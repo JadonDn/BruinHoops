@@ -3,14 +3,15 @@ import logo from './logo.svg';
 import firebase from 'firebase/app';
 import './App.css';
 
-import 'firebase/firestore';
-import 'firebase/auth';
-import 'firebase/analytics';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-
-firebase.initializeApp({
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
   apiKey: "AIzaSyDM50IoA5Ah4Na_h5fyHBIHDPrONjtZ9jk",
   authDomain: "bruin-hoops.firebaseapp.com",
   projectId: "bruin-hoops",
@@ -18,11 +19,11 @@ firebase.initializeApp({
   messagingSenderId: "133820248934",
   appId: "1:133820248934:web:20b9bb7e3729c3f2668ea7",
   measurementId: "G-JNL13FVSXB"
-})
+};
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
-const analytics = firebase.analytics();
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 function App() {
   return (
