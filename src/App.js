@@ -29,20 +29,31 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload. nahhh
+        <div classname = "WebsiteName"><h2>Bruin</h2><h3>hoops</h3></div>
         </p>
         <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+  >
+       
+      <img src = "https://content.sportslogos.net/logos/35/882/full/ucla_bruins_logo_mascot_20043890.png" className="App-logo" alt="logo"/>
+<body>
+  <div class = "login-Section">
+    <h1>Login</h1>
+    <form>
+      <label for ="username">Username</label>
+      <input type = "text" id ="username" name = "password"></input>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password"></input>
+      <input type="submit" value="Login"></input>
+    </form>
+  </div>
+</body>
+          
         </a>
       </header>
+
     </div>
+    
   );
 }
 
