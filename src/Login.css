@@ -1,0 +1,121 @@
+.App {
+    text-align: center;
+  }
+  h3{
+    color: goldenrod; /* blue color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* drop shadow */
+    /* gold gradient */
+   
+    position: absolute;
+    top: 26%;
+    left: 95%;
+    transform: translate(10%, -70%);
+    font-size: 80px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+  }
+   h2{
+    color: #007bff; /* blue color */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* drop shadow */
+    /* gold gradient */
+   
+    position: absolute;
+    top: 26%;
+    left: 50%;
+    transform: translate(-170%, -50%);
+    font-size: 80px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-transform: uppercase;
+    font-weight: bold;
+    
+   }
+  .App-logo {
+    height: 25vmin;
+    pointer-events: none;
+    position: absolute;
+    top: 18%;
+    left: 50%;
+    transform: translate(-55%, -28%);
+    transition: all 0.2s ease;
+   
+  }
+  
+  .login-Section a{
+    font-size: 15px;
+  }
+  
+  .login-Section{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+    padding-top: 52px;
+    padding-right: 60px;
+    padding-bottom: 50px;
+    padding-left: 60px;
+    border-radius: 10px;
+   
+  }
+  
+  h1 {
+    color: #007bff;
+    text-align: center;
+    font-size: 30px;
+    position:absolute;
+    top: 38%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 10px;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 3px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  input[type="submit"] {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor:pointer;
+  }
+  
+  input[type="submit"]:hover {
+    
+    background-color: lightblue;
+  }
+  
+  .App-header {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    background-color: white;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: #007bff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+  }
+  
