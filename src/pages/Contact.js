@@ -4,9 +4,9 @@ import NavBar from "../components/NavBar";
 
 function Contact() {
     return(
-        <div>
+        <div className = "Contact">
             <NavBar />
-            <p>(661) 208-7195</p>
+            <p>BruinHoops@gmail.com</p>
         </div>
     );
 }

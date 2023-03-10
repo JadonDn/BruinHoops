@@ -13,7 +13,7 @@ import Contact  from './pages/Contact';
    <BrowserRouter>
     <Routes>
      <Route  path='/' element={<Login/>} />
-     <Route path='/CreateAccount' element={<CreateAccount/>} />
+     <Route path='/Create-Account' element={<CreateAccount/>} />
      <Route path='/Home' element={<Home/>} />
      <Route path='/About' element={<About/>} />
      <Route path='/Contact' element={<Contact/>} />

@@ -13,8 +13,17 @@
     padding: 0;
   }
   
+  .logo {
+    max-width: 5%;
+    max-height: 5%;
+    display:flex;
+  }
+  .logo:hover {
+    text-decoration: underline;
+  }
+  
   .navigation-bar li {
-    margin: 0 15px;
+    margin: 0 10px;
   }
   
   .navigation-bar a {
@@ -29,6 +38,6 @@
   }
   
   .navigation-bar span {
-    margin-left: 5px;
+    margin-left:  5px;
   }
   

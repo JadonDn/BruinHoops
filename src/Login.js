@@ -21,7 +21,7 @@ function Login() {
         <label for="password">Password</label>
         <input type="password" id="password" name="password"></input>
         <input type="submit" value="Login"></input>
-        <Link to="/Home">
+        <Link to="/Create-Account">
               Create Account
         </Link>
       </form>

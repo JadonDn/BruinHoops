@@ -1,9 +1,9 @@
 import React from 'react';
 import { FaHome, FaUser, FaPhoneAlt } from 'react-icons/fa';
-import { FcAbout } from 'react-icons/fc';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import img from '../../public/ucla_bruins_logo_mascot_20043890.png';
 import './NavBar.css';
+import logo from '../BruinHoopsLogo.png';
 
 const NavBar = () => {
   return (
@@ -11,13 +11,12 @@ const NavBar = () => {
       <ul>
         <li>
           <Link to="/Home">
-            <FaHome />
-            <span>Bruin Hoops</span>
+          <img src={logo} class = "logo" alt="Logo"/>
           </Link>
         </li>
         <li>
           <Link to="/About">
-            <FcAbout />
+            <AiOutlineInfoCircle />
             <span>About</span>
           </Link>
         </li>
@@ -29,8 +28,8 @@ const NavBar = () => {
         </li>
         <li>
           <Link to="/Profile  ">
-            <FaHome />
-            <span></span>
+            <FaUser />
+            <span>Profile</span>
           </Link>
         </li>
       </ul>
