@@ -1,29 +1,47 @@
-body{
-    background-color: white;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+
+
+  body{
+  background: linear-gradient(to left, rgb(120, 120, 255),goldenrod);
+  animation: gradient-animation 10s ease infinite;
 }
+ @keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .bear{
-    height: 15vmin;
+  max-width: 100%;
+  height: auto;
+    height: 7.5vw;
     pointer-events: none;
     position: absolute;
-    top: 18%;
-    left: 50%;
-    transform: translate(900%, -150%);
+    top: 50vw;
+    left: 50vw;
+    transform: translate(1vw, -60vw);
     transition: all 0.2s ease;
     
     display: block;
 }
 .Create a{
-    color: #007bff; /* blue color */
+    color: #2890ff; /* blue color */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* drop shadow */
     /* gold gradient */
-   font-size: 35px;
+   font-size: 30px;
 
     top: 30%;
     left: 50%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: Bold;
 
     
-   
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
 
@@ -36,7 +54,8 @@ body{
 }
 .Create input[value="Create Account"]{
     font-size: 20px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-style: italic;
+
 }
 
 @keyframes typing {
@@ -55,35 +74,36 @@ body{
 
 .Create{
 background-color: rgba(255, 255, 255, 0.671);
+font-family: 'Josefin Sans', sans-serif;
         position: absolute;
-        top: 40%;
-        left: 20%;
+        top: 50%;
+        left: 50%;
         transform: translate(-50%, -50%);
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
-    padding-top: 52px;
-    padding-right: 50px;
-    padding-bottom: 50px;
-    padding-left: 60px;
+    padding-top: 4.06vw;
+    padding-right: 4.06vw;
+    padding-bottom: 4.06vw;
+    padding-left: 4.06vw;
     border-radius: 10px;
 
 }
 
 .Create input[type="submit"] {
-
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-family: 'Josefin Sans', sans-serif;
+    
     padding: 15px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor:pointer;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+   
   }
  .Create input[type="text"],
 .Create input[type="password"],
 .Create input[type="email"] {
     
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
     padding: 10px;
     margin-bottom: 15px;
     border-radius: 2px; 
@@ -93,7 +113,7 @@ background-color: rgba(255, 255, 255, 0.671);
   .Create label {
     margin-bottom: 15px;
     font-size: large;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
   }
   
  .Create input[type="submit"]:hover {
