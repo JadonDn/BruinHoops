@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+
+
 .Login {
     text-align: center;
   }
@@ -9,12 +12,12 @@
     position: absolute;
     top: 26%;
     left: 95%;
-    transform: translate(10%, -70%);
+    transform: translate(6%, -70%);
     font-size: 80px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
-    
+    font-family: 'Josefin Sans', sans-serif;
   }
    h2{
     color: #007bff; /* blue color */
@@ -24,12 +27,13 @@
     position: absolute;
     top: 26%;
     left: 50%;
-    transform: translate(-170%, -50%);
+    transform: translate(-171%, -50%);
     font-size: 80px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-transform: uppercase;
     font-weight: bold;
     
+    font-family: 'Josefin Sans', sans-serif;
    }
   .Login-logo {
     height: 25vmin;
@@ -44,31 +48,34 @@
   
   .login-Section a{
     font-size: 15px;
+    font-family: 'Josefin Sans', sans-serif;
   }
   
   .login-Section{
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
-    padding-top: 52px;
-    padding-right: 60px;
-    padding-bottom: 50px;
-    padding-left: 60px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+ 
+    padding-top: 4.0vw;
+    padding-right: 4.0vw;
+    padding-bottom: 4.0vw;
+    padding-left: 4.0vw;
     border-radius: 10px;
-
+   background-color: rgba(241, 241, 241, 0.993);
   
-   
   }
   
   h1 {
+    transition: all 0.2s ease;
+    width: 100%;
+    height: auto;
     color: #007bff;
     text-align: center;
-    font-size: 30px;
+    font-size: 4vmin;
     position:absolute;
-    top: 38%;
+    top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    
+    font-family: 'Josefin Sans', sans-serif;
   }
   
   form {
@@ -82,8 +89,8 @@
   
   input[type="text"],
   input[type="password"] {
-    
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2vmin;
+    font-family: 'Josefin Sans', sans-serif;
     padding: 3px;
     margin-bottom: 15px;
     border-radius: 5px;
@@ -91,13 +98,14 @@
   }
   
   input[type="submit"] {
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     padding: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor:pointer;
+    margin-bottom: 10px;
   }
   
   input[type="submit"]:hover {
@@ -110,6 +118,7 @@
     top: 25%;
     left: 50%;
     transform: translate(-50%, -25%);
+
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -117,7 +126,6 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: #007bff;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
   
   }
- 
