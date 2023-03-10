@@ -110,7 +110,6 @@
     top: 25%;
     left: 50%;
     transform: translate(-50%, -25%);
-    background-color: white;
     min-height: 100vh;
     display: flex;
     flex-direction: column;

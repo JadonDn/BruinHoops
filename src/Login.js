@@ -4,7 +4,6 @@ import  './Login.css';
 
 function Login() {
     return(
-      
         <div className="Login">
         <header className="Login-header">
           <p>
@@ -22,9 +21,8 @@ function Login() {
         <label for="password">Password</label>
         <input type="password" id="password" name="password"></input>
         <input type="submit" value="Login"></input>
-        <Link to="/CreateAccount">
-              Create Account 
-            
+        <Link to="/Home">
+              Create Account
         </Link>
       </form>
     </div>

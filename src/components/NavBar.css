@@ -1,26 +1,27 @@
 .navigation-bar {
-    background-color: #333;
+    background-color: #2d68c4;
     color: #fff;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    font-size:120%;
   }
   
   .navigation-bar ul {
     display: flex;
     list-style: none;
-    margin: 0;
+    margin: 100;
     padding: 0;
   }
   
   .navigation-bar li {
-    margin: 0 10px;
+    margin: 0 15px;
   }
   
   .navigation-bar a {
     align-items: center;
     display: flex;
     text-decoration: none;
-    color: #fff;
+    color: #f0aa02;
   }
   
   .navigation-bar a:hover {
