@@ -1,9 +1,87 @@
-.navigation-bar {
-    background-color: #2d68c4;
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    font-size:120%;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+
+
+.Navigation {
+box-sizing: border-box;
+margin:0;
+padding: 0;
+background-color: #24252A;
+}
+
+.Navigation li, .Navigation button, .Navigation a{
+  font-size: 19px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 500;
+  color: #edf0f1;
+  text-decoration: none;
+}
+.Navigation header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10%;
+}
+
+.logo{
+  order: 3;
+  cursor: pointer;
+  height: 50px;
+  
+}
+
+.navlinks{
+  list-style: none;
+}
+.navlinks li{
+  display:inline-block;
+  padding: 0px 20px;
+}
+
+.navlinks li link{
+  transition: all 0.2s ease 0s;
+}
+
+.navlinks li .Navigation link:hover{
+ color: #0088a9
+}
+
+.Navigation button{
+  margin-left: 500px;
+  padding: 9px 25px;
+  background-color: #0088a9;
+  border-radius: 50px;
+  border: none;
+  cursor:pointer;
+  transition: all 0.2s ease 0s;
+}
+
+.Navigation button:hover{
+  background-color: rgb(0, 110, 129);
+}
+
+.navlinks a :hover{
+text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+/* .navigation-bar {
+  background-color: #333;
+  background-color: #2d68c4;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  font-size:120%;
   }
   
   .navigation-bar ul {
@@ -11,6 +89,7 @@
     list-style: none;
     margin: 100;
     padding: 0;
+   
   }
   
   .logo {
@@ -24,20 +103,28 @@
   
   .navigation-bar li {
     margin: 0 10px;
+    font-weight: 500;
+
+    font-family: 'Josefin Sans', sans-serif;
+    display: inline-block;
+    padding: 0px 20px;
   }
   
   .navigation-bar a {
+    transition: all 0.3s ease 0s;
     align-items: center;
+    font-weight: 500;
+    font-size: 16px;
     display: flex;
     text-decoration: none;
-    color: #f0aa02;
+    color:  rgb(255, 230, 0)
   }
   
   .navigation-bar a:hover {
-    text-decoration: underline;
+    text-decoration: cornflowerblue
   }
   
   .navigation-bar span {
     margin-left:  5px;
   }
-  
+   */

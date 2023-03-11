@@ -11,7 +11,7 @@
    
     position: absolute;
     top: 26%;
-    left: 95%;
+    left: 94%;
     transform: translate(6%, -70%);
     font-size: 80px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -36,7 +36,7 @@
     font-family: 'Josefin Sans', sans-serif;
    }
   .Login-logo {
-    height: 25vmin;
+    height: 25%;
     pointer-events: none;
     position: absolute;
     top: 18%;
@@ -64,12 +64,13 @@
   }
   
   h1 {
+  
     transition: all 0.2s ease;
     width: 100%;
     height: auto;
     color: #007bff;
     text-align: center;
-    font-size: 4vmin;
+    font-size: 100%;
     position:absolute;
     top: 36%;
     left: 50%;
@@ -78,7 +79,7 @@
     font-family: 'Josefin Sans', sans-serif;
   }
   
-  form {
+ div {
     display: flex;
     flex-direction: column;
   }
@@ -95,9 +96,10 @@
     margin-bottom: 15px;
     border-radius: 5px;
     border: 1px solid #ccc;
+
   }
   
-  input[type="submit"] {
+  button[type="submit"] {
     font-family: 'Josefin Sans', sans-serif;
     padding: 10px;
     background-color: #007bff;

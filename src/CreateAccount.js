@@ -39,7 +39,7 @@ const CreateAccount = () => {
            <input type="text" id="email" name="email" required></input>
            <label htmlFor="password">Password:</label>
            <input type="password" id="password" name="password" required></input>
-           <button onClick={() => {register()}}>Register</button>
+           <button type ="submit" onClick={() => {register()}}>Register</button>
            </div>
            </div>
            </div>
