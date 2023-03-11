@@ -7,6 +7,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref } from "firebase/database";
+import { goToLink } from './components/Utils';
 
 const firebaseConfig = {
 apiKey: "AIzaSyDM50IoA5Ah4Na_h5fyHBIHDPrONjtZ9jk",
@@ -68,8 +69,7 @@ function register() {
         }
         
         database_ref.child('users/' + user.uid).set(user_data)
-        
-        alert('User Created!!')
+        goToLink("/Home")
     })
     .catch(function(error) {
         // Handle Errors here.

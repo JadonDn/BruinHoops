@@ -1,12 +1,12 @@
 import React from "react"
 import { Link } from "react-router-dom";
 import firebase from 'firebase/compat/app';
+import { goToLink } from './components/Utils';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
-import './App.css';
 import  './Login.css';
 
-import { initializeApp } from "firebase/app";
+// import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref } from "firebase/database";
@@ -44,7 +44,10 @@ function Login() {
   <body>
     <div class = "login-Section">
       <meta name ="viewport" content="width=device-width, initial-scale=1.0"></meta>
-      <h1>Login</h1>
+
+            
+            <h1>Login Here</h1>
+   
       <div className="Logincolor">
 
       <div>
@@ -52,7 +55,7 @@ function Login() {
         <input type = "text" id ="email" name = "email"></input>
         <label htmlFor="password">Password</label>
         <input type="password" id="password" name="password"></input>
-           <button onClick={() => {login()}}>Login</button>
+           <button type="submit" onClick={() => {login()} }>Login</button>
         <Link to="/Create-Account">
               Create Account
         </Link>
@@ -86,8 +89,8 @@ function login () {
 
     // Push to Firebase Database
     database_ref.child('users/' + user.uid).update(user_data)
+    goToLink("/Home")
 
-    alert('User Logged In!!')
 
   })
   .catch(function(error) {
@@ -98,6 +101,7 @@ function login () {
     alert(error_message)
   })
 }
+
 
 
 export default Login;

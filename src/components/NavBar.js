@@ -12,35 +12,25 @@ const NavBar = () => {
       <Link to="/Home">
          <img src = "mascot.png" className="logo" alt="logo"/>
       </Link>
-   
-           
           <ul class = "navlinks">
-            <li><Link to="/About">
-            
-            <a>About</a>
-           </Link></li>
-           
             <li>
-            <Link to="/Profile  ">
-           
-           <a>Profile</a>
-         </Link>
-         <li>  <Link to="/Contact">
-            
-             <button>Contact Us</button>
-             
-            </Link></li>
-        
+              <Link to="/About">
+                <a>About</a>
+              </Link>
+           </li>
+            <li>
+              <Link to="/Profile  ">
+                <a>Profile</a>
+              </Link>
+            <li>  
+              <Link to="/Contact">
+                <button>Contact Us</button>
+              </Link>
             </li>
-            </ul>
-            </header>
-      </nav>
-
-
-
-
-
-
+            </li>
+          </ul>
+      </header>
+  </nav>
 
     // <nav className="navigation-bar">
     //   <ul>
@@ -69,6 +59,7 @@ const NavBar = () => {
     //     </li>
     //   </ul>
     // </nav>
+
   );
 }
 
