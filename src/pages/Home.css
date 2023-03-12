@@ -1,3 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
+
+
 .Home h1 {
-    color:burlywood;
+    margin: 0 auto 20px;
+    
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.0375rem;
 }
+.Home p{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    color: #0f1031;
+    margin: 0 auto 24px;
+    
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ 
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+}
+button[type = "Getstarted"]
+{
+ font-size: 20px;
+ display: inline-block;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 28px;
+    cursor:pointer;
+    margin-bottom: 10px;
+    position: absolute;
+    top: 49%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto
+}
+
+button[type = "Getstarted"]:hover
+{
+    background-color: rgb(0, 110, 129);
+}
+
+
+/* .jwc{
+
+
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -3;
+    background: linear-gradient(45deg, #ffffff, #ff0000);
+    opacity: 0.35;
+    filter: alpha(opacity=50);
+    
+
+
+} */
+

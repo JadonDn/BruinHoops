@@ -110,7 +110,7 @@
     margin-bottom: 10px;
   }
   
-  input[type="submit"]:hover {
+  button[type="submit"]:hover {
     
     background-color: lightblue;
   }

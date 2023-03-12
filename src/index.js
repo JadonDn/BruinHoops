@@ -7,7 +7,7 @@ import CreateAccount from "./CreateAccount";
 import Home  from './pages/Home';
 import About  from './pages/About';
 import Contact  from './pages/Contact';
-
+import App from "./App";
  const rootElement = document.getElementById("root");
  ReactDOM.render(
    <BrowserRouter>
@@ -17,6 +17,7 @@ import Contact  from './pages/Contact';
      <Route path='/Home' element={<Home/>} />
      <Route path='/About' element={<About/>} />
      <Route path='/Contact' element={<Contact/>} />
+     <Route path ='/App' element ={<App/>}/>
    </Routes>
    </BrowserRouter>,
    rootElement

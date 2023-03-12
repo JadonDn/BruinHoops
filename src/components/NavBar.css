@@ -3,19 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital@1&display=swap');
 
 
-.Navigation {
-box-sizing: border-box;
-margin:0;
-padding: 0;
-background-color: #24252A;
-}
 
-.Navigation li, .Navigation button, .Navigation a{
-  font-size: 19px;
+
+.navlinks li, .navlinks a{
+  font-size: 25px;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 500;
-  color: #edf0f1;
+  color: #24252A;
   text-decoration: none;
+  font-weight: bold;
 }
 .Navigation header{
   display: flex;
@@ -27,7 +23,7 @@ background-color: #24252A;
 .logo{
   order: 3;
   cursor: pointer;
-  height: 50px;
+  height: 100px;
   
 }
 
@@ -46,23 +42,27 @@ background-color: #24252A;
 .navlinks li .Navigation link:hover{
  color: #0088a9
 }
+.navlinks a :hover{
+  text-decoration: underline;
+  }
+ 
 
 .Navigation button{
-  margin-left: 500px;
-  padding: 9px 25px;
-  background-color: #0088a9;
+  font-size: 22px;
+  color: whitesmoke;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-left: 430px;
+  padding: 10px 25px;
+  background-color: #007bff;
   border-radius: 50px;
   border: none;
   cursor:pointer;
   transition: all 0.2s ease 0s;
+  font-size: 20px;
 }
 
 .Navigation button:hover{
   background-color: rgb(0, 110, 129);
-}
-
-.navlinks a :hover{
-text-decoration: underline;
 }
 
 
