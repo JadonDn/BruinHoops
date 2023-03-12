@@ -3,27 +3,10 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
 import './CreateAccount.css'
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref } from "firebase/database";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { goToLink } from './components/Utils';
+import {app, auth} from './firebase';
 
-const firebaseConfig = {
-apiKey: "AIzaSyDM50IoA5Ah4Na_h5fyHBIHDPrONjtZ9jk",
-authDomain: "bruin-hoops.firebaseapp.com",
-databaseURL: "https://bruin-hoops-default-rtdb.firebaseio.com",
-projectId: "bruin-hoops",
-storageBucket: "bruin-hoops.appspot.com",
-messagingSenderId: "133820248934",
-appId: "1:133820248934:web:20b9bb7e3729c3f2668ea7",
-measurementId: "G-JNL13FVSXB"
-};
-
-const app = firebase.initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const auth = getAuth();
-const database = getDatabase(app);
 
 const CreateAccount = () => {
     
