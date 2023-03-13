@@ -18,6 +18,11 @@ const NavBar = () => {
                 <a>About</a>
               </Link>
            </li>
+           <li>
+              <Link to="/App">
+                <a>Your Events</a>
+              </Link>
+           </li>
            <li>  
               <Link to="/Contact">
               <button type = "submit">Contact Us</button>

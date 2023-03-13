@@ -57,7 +57,7 @@ function App() {
     setModal(!modal);
   };
 
-  const modalEventCheck = (start, end) => {
+  const modalEventCheck = (start, end, title) => {
 
     const { star } = start;
     const {en} = end;
@@ -67,19 +67,32 @@ function App() {
     const maxEventDuration = 2;
     const minEventDuration = 0.5;
 
-    if (canAdd && !isNotAllowed && eventDuration <= maxEventDuration && eventDuration >= minEventDuration) {
+    if (canAdd && !isNotAllowed && eventDuration <= maxEventDuration && eventDuration >= minEventDuration && title != '') {
+      Swal.fire({
+        icon: 'success',
+        title: 'Court reserved!',
+        confirmButtonColor: '#007bff',
+      });
       return(true);
     } else if (isNotAllowed && !modal) {
       Swal.fire({
         icon: 'error',
         title: 'Please select an available time slot',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
+
       });
       setModal(false);
+      
       return(false);
     } else if (eventDuration > maxEventDuration) {
       Swal.fire({
         icon: 'error',
         title: 'Courts may be reserved for up to 2 hours only.',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
       });
       setModal(false);
       return(false);
@@ -87,15 +100,31 @@ function App() {
       Swal.fire({
         icon: 'error',
         title: 'Courts must be reserved for at least 30 minutes',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
       });
       setModal(false);
       return(false);
 
-    } else {
+    } else if(title == ''){
+      Swal.fire({
+        icon: 'error',
+        title: 'Please choose a game.',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
+      });
+      setModal(false);
+      return(false);
+
+    }else {
         Swal.fire({
           icon: 'error',
           title: 'All courts are reserved at this time, please choose a different time.',
-          confirmButtonColor: 'rgb(120, 120, 255)'
+          confirmButtonColor: '#007bff',
+          timerProgressBar: true,
+          timer: 4000
         });
         setModal(false);
         return(false);
@@ -140,6 +169,7 @@ function App() {
       Swal.fire({
         icon: 'error',
         title: 'Please select an available time slot',
+        confirmButtonColor: '#007bff'
       });
       setModal(false);
       return(false);
@@ -147,6 +177,9 @@ function App() {
       Swal.fire({
         icon: 'error',
         title: 'Courts may be reserved for up to 2 hours only.',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
       });
       setModal(false);
       return(false);
@@ -154,6 +187,10 @@ function App() {
       Swal.fire({
         icon: 'error',
         title: 'Courts must be reserved for at least 30 minutes',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
+
       });
       setModal(false);
       return(false);
@@ -162,7 +199,9 @@ function App() {
         Swal.fire({
           icon: 'error',
           title: 'All courts are reserved at this time, please choose a different time.',
-          confirmButtonColor: 'rgb(120, 120, 255)'
+          confirmButtonColor: '#007bff',
+          timerProgressBar: true,
+          timer: 4000
         });
         setModal(false);
         return(false);
@@ -177,7 +216,7 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(modalEventCheck(startDate, endDate))
+    if(modalEventCheck(startDate, endDate, title))
     {
       const newEvent = {
         id: events.length + 1,
@@ -192,15 +231,40 @@ function App() {
     toggleModal();
   };
 
+  const termsPopup = () => {
+
+    Swal.fire({
+      icon: 'info',
+      title: '<div style="text-align: left;">Reservations - Terms</div>',
+      titleClass: 'title-left',
+      width: '800px',
+      html: `
+      <div style="text-align: left;   line-height: 1.5;      ">
+        • You may have only one room reserved per day.<br/>
+        • Events must be reserved at least 30 minutes and at most 2 hours.<br/>
+        • If you do not confirm your reservation within the first 15 minutes, it will be cancelled.<br/>
+        • Only one court can be reserved per user, per day.<br/>
+        • Be responsible! Basketball courts rules and courtesies apply at all times.<br/>
+        • There may only be up to 4 reservations per time slot.<br/>
+        • And most importantly, have fun!
+
+
+      </div>
+    `,      confirmButtonColor: '#007bff',
+    });
+
+  }
+
   
 
   return (
     <div id="events" className="App">
       <div className="header-container" >
-        <h1> Events</h1>  <NavBar />
+        <NavBar />
       </div>
       <div className="event-btn-container" >
         <button onClick={toggleModal}className="btn-modal"> Reserve </button>
+        <button onClick={termsPopup}className="btn-modal"> Terms </button>
       </div>
       <div style={{clear: 'both'}}></div>
       <div style={{paddingTop: '1px'}}>
@@ -215,7 +279,7 @@ function App() {
           dayFormat={dayFormat}
           timeFormat={timeFormat}
           headerFormat={headerFormat}
-          style={{ height: 670, paddingLeft: '20px', paddingRight: '20px'}}
+          style={{ height: 770, paddingLeft: '100px', paddingRight: '100px'}}
           intervalHeight={50}
           slotDuration={'00:30:00'}
           min={new Date(0, 0, 0, 8, 0)} // start time of day view
