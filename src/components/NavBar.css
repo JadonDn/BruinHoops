@@ -24,6 +24,7 @@
   order: 3;
   cursor: pointer;
   height: 100px;
+ 
   
 }
 
@@ -33,6 +34,7 @@
 .navlinks li{
   display:inline-block;
   padding: 0px 20px;
+
 }
 
 .navlinks li link{
@@ -47,11 +49,16 @@
   }
  
 
-.Navigation button{
+ button[type = "contact"]{
+  top: 22%;
+    left: 50%;
+    transform: translate(-55%, -28%);
+  display: inline-block;
   font-size: 22px;
   color: whitesmoke;
   font-family: 'Josefin Sans', sans-serif;
-  margin-left: 430px;
+  margin-left: 360px;
+ 
   padding: 10px 25px;
   background-color: #007bff;
   border-radius: 50px;
@@ -66,65 +73,3 @@
 }
 
 
-
-
-
-
-
-
-
-
-/* .navigation-bar {
-  background-color: #333;
-  background-color: #2d68c4;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  justify-content: space-between;
-  font-size:120%;
-  }
-  
-  .navigation-bar ul {
-    display: flex;
-    list-style: none;
-    margin: 100;
-    padding: 0;
-   
-  }
-  
-  .logo {
-    max-width: 5%;
-    max-height: 5%;
-    display:flex;
-  }
-  .logo:hover {
-    text-decoration: underline;
-  }
-  
-  .navigation-bar li {
-    margin: 0 10px;
-    font-weight: 500;
-
-    font-family: 'Josefin Sans', sans-serif;
-    display: inline-block;
-    padding: 0px 20px;
-  }
-  
-  .navigation-bar a {
-    transition: all 0.3s ease 0s;
-    align-items: center;
-    font-weight: 500;
-    font-size: 16px;
-    display: flex;
-    text-decoration: none;
-    color:  rgb(255, 230, 0)
-  }
-  
-  .navigation-bar a:hover {
-    text-decoration: cornflowerblue
-  }
-  
-  .navigation-bar span {
-    margin-left:  5px;
-  }
-   */

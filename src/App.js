@@ -115,7 +115,7 @@ function App() {
   return (
     <div className="App">
       <div className="header-container" style={{display: 'flex', justifyContent: 'flex-start', alignItems: 'center', paddingLeft: '20px'}}>
-        <h1 style={{marginBottom: '10px'}}>Events</h1>
+        {/* <h1 style={{marginBottom: '10px'}}>Events</h1> */}
       </div>
       <div style={{clear: 'both'}}></div>
       <div style={{paddingTop: '50px'}}>

@@ -28,11 +28,11 @@ const NavBar = () => {
               <button type = "submit">Contact Us</button>
               </Link>
               </li>
-            <li>
-              <Link to="/">
-              <button type="submit" onClick={() => {signOutButton()} }>Sign Out</button>
-              </Link>
-            </li>
+            <li><Link to="/">
+              <button type="contact" onClick={() => {signOutButton()} }>Sign Out</button>
+              </Link></li>
+             
+            
           </ul>
       </header>
   </nav>

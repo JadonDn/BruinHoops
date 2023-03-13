@@ -2,7 +2,10 @@
 
 
 
-
+.test div{
+  display: flex;
+  flex-direction: column;
+}
 .bear{
   max-width: 100%;
   height: auto;
@@ -59,7 +62,7 @@
 }
 
 .Create{
-background-color: rgba(241, 241, 241, 0.993);
+background-color: white;
 font-family: 'Josefin Sans', sans-serif;
         position: absolute;
         top: 50%;

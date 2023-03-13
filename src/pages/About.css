@@ -1,3 +1,57 @@
 .About h1 {
+    margin: 0 auto 20px;
+    transition: all 0.2s ease;
+    width: 100%;
+    height: auto;
     color: black;
+    text-align: center;
+    font-size: 100%;
+    position:absolute;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.0375rem;
+}
+.About p{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.35rem;
+    line-height: 1.4;
+    color: #0f1031;
+    margin: 0 auto 24px;
+    
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+ 
+    padding-top: 5.2vw;
+    padding-right: 4.0vw;
+    padding-bottom: 3vw;
+    padding-left: 4.0vw;
+    border-radius: 10px;
+    background-color: white;
+    position: absolute;
+    top: 32%;
+    left: 51%;
+    transform: translate(-50%, -25%);
+}
+body{
+    background-color: beige;
+}
+.cal{
+    filter: grayscale(100%); 
+  opacity: 0.7;
+  position: absolute;
+  top: 60%;
+  left: 25%;
+  transform: translate(-50%, -25%);
 }
