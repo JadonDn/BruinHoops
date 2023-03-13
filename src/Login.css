@@ -7,8 +7,8 @@
   .Login h3{
     color: goldenrod; 
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-    
-   
+    max-width: fit-content;
+   max-height: fit-content;
     position: absolute;
     top: 26%;
     left: 94%;
@@ -39,7 +39,7 @@
     height: 25%;
     pointer-events: none;
     position: absolute;
-    top: 18%;
+    top: 16%;
     left: 50%;
     transform: translate(-55%, -28%);
     transition: all 0.2s ease;
@@ -64,18 +64,18 @@
   }
   
   .Login h1 {
-  
+
     transition: all 0.2s ease;
-    width: 100%;
+  
     height: auto;
     color: #007bff;
     text-align: center;
-    font-size: 100%;
+    font-size: 25px;
     position:absolute;
     top: 36%;
     left: 50%;
     transform: translate(-50%, -50%);
-
+    
     font-family: 'Josefin Sans', sans-serif;
   }
   
@@ -92,8 +92,9 @@
  .Login input[type="password"] {
     font-size: 2vmin;
     font-family: 'Josefin Sans', sans-serif;
-    padding: 3px;
-    margin-bottom: 15px;
+   
+    padding: 1px;
+    margin-bottom: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 

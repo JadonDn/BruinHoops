@@ -53,11 +53,11 @@
   top: 22%;
     left: 50%;
     transform: translate(-55%, -28%);
-  display: inline-block;
-  font-size: 22px;
+
+ 
   color: whitesmoke;
   font-family: 'Josefin Sans', sans-serif;
-  margin-left: 360px;
+  margin-left: 430px;
  
   padding: 10px 25px;
   background-color: #007bff;
@@ -65,7 +65,7 @@
   border: none;
   cursor:pointer;
   transition: all 0.2s ease 0s;
-  font-size: 20px;
+  font-size: 70%;
 }
 
 .Navigation button:hover{

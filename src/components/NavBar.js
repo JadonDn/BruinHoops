@@ -18,18 +18,19 @@ const NavBar = () => {
                 <a>About</a>
               </Link>
            </li>
+           <li>  
+              <Link to="/Contact">
+              <button type = "submit">Contact Us</button>
+              </Link>
+              </li>
             <li>
               <Link to="/Profile">
                 <a>Profile</a>
               </Link>
             </li>
-            <li>  
-              <Link to="/Contact">
-              <button type = "submit">Contact Us</button>
-              </Link>
-              </li>
+            
             <li><Link to="/">
-              <button type="contact" onClick={() => {signOutButton()} }>Sign Out</button>
+              <button type="submit" onClick={() => {signOutButton()} }>Sign Out</button>
               </Link></li>
              
             

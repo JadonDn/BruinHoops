@@ -15,14 +15,14 @@
     transform: translate(-50%, -50%);
 
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 5rem;
+    font-size: 4.5rem;
     font-weight: 800;
     line-height: 1;
     letter-spacing: -.0375rem;
 }
 .Home p{
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 1.35rem;
+    font-size: 0.85rem;
     line-height: 1.4;
     color: #0f1031;
     margin: 0 auto 24px;
