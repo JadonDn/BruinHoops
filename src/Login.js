@@ -4,6 +4,8 @@ import { goToLink } from './components/Utils';
 import {signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from './firebase';
 import firebase from 'firebase/compat/app';
+import Swal from 'sweetalert2';
+
 import './Login.css'
 
 function Login() {
@@ -62,8 +64,13 @@ function login () {
     // Firebase will use this to alert of its errors
     var error_code = error.code
     var error_message = error.message
-
-    alert(error_message)
+    Swal.fire({
+      icon: 'error',
+      title: 'Incorrect Email or password!',
+      confirmButtonColor: '#007bff',
+      timerProgressBar: true,
+      timer: 4000
+    });
   })
 }
 

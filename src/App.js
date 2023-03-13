@@ -8,6 +8,9 @@ import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NavBar from './components/NavBar';
+import firebase from 'firebase/compat/app';
+import { database } from 'firebase/compat/app';
+
 
 
 
@@ -212,7 +215,34 @@ function App() {
 
   const handleSelectEvent = (event) => {
     console.log('Selected Event:', event);
+    handleDeleteEvent(event);
   };
+
+  const handleDeleteEvent = (clickedEvent) => {
+    Swal.fire({
+      title: 'Delete Reservation?',
+      html: '<div style="text-align: center;">You cannot revert this!</div>',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#007bff',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success',
+        )
+        const newEvents = events.filter((event) => event.id !== clickedEvent.id);
+        setEvents(newEvents);
+      }
+
+    })
+  };
+
+  
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -246,11 +276,8 @@ function App() {
         • Only one court can be reserved per user, per day.<br/>
         • Be responsible! Basketball courts rules and courtesies apply at all times.<br/>
         • There may only be up to 4 reservations per time slot.<br/>
-        • And most importantly, have fun!
-
-
-      </div>
-    `,      confirmButtonColor: '#007bff',
+        • And most importantly, have fun!</div>`, 
+             confirmButtonColor: '#007bff',
     });
 
   }

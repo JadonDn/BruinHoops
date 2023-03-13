@@ -2,7 +2,8 @@ import React from 'react'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/database';
-import './CreateAccount.css'
+import './CreateAccount.css';
+import Swal from 'sweetalert2';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { goToLink } from './components/Utils';
 import {app, auth} from './firebase';
@@ -59,8 +60,18 @@ function register() {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        alert(errorMessage);
-        console.log(error);
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Email / Username!',
+            html: `
+      <div style="text-align: center;   line-height: 1.5;      ">
+      It looks like you may have entered an incorrect email address or username. Please correct it if necessary.
+      </div>`,
+            confirmButtonColor: '#007bff',
+            timerProgressBar: true,
+            timer: 4000
+          });
+                  console.log(error);
     });
 }
 
