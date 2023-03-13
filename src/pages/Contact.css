@@ -1,3 +1,108 @@
-.Contact p {
-    color: black;
+
+.Contact h1 {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    text-align: center;
+    margin: 35px 0 20px 0 !important;
+    margin: 0 auto 20px;
+    transition: all 0.2s ease;
+ 
+    height: auto;
+    color: #007bff;
+    text-align: center;
+  
+    position:absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -.0375rem;
+  }
+  .Contact p{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 1.15rem;
+    line-height: 1.4;
+    color: #0f1031;
+    margin: 0 auto 24px;
+    
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: 28%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+  }
+  
+.Contact form{
+  
+    background-color: white;
+    font-family: 'Josefin Sans', sans-serif;
+            position: absolute;
+            top: 63%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
+        padding-top: 3.06vw;
+        padding-right: 4.06vw;
+        padding-bottom: 3.06vw;
+        padding-left: 4.06vw;
+        border-radius: 10px;
+        overflow: auto;
+        resize: vertical;
+}
+.Contact input[type = "text"] 
+{
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    border: 2px solid #ccc;
+}
+
+.Contact input[type = "email"]
+{
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    border: 2px solid #ccc;
+} 
+.form-control{
+    font-size: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px; 
+    border: 2px solid #ccc;
+} 
+
+.Contact button[type ="Sub"]{
+    font-size:15px;
+    font-family: 'Josefin Sans', sans-serif;
+    padding: 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor:pointer;
+    margin-bottom: 10px;
+    
+    top: 28%;
+    left: 50%;
+    transform: translate(40%, -20%);
+}
+
+.Contact button[type = "Sub"]:hover{
+    background-color: lightblue;
 }
