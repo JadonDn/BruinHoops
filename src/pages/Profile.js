@@ -4,6 +4,8 @@ import { auth, database } from '../firebase';
 import { ref, child, get, getDatabase } from 'firebase/database';
 import { onAuthStateChanged, getAuth } from '@firebase/auth';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+
 
 
 
@@ -31,14 +33,31 @@ function Profile() {
     //     }
     //   })
 
-    return(
+    const editProfile = () => {
+
+        Swal.fire({
+            icon: 'error',
+            title: 'CHANGE ME!',
+            confirmButtonColor: '#007bff',
+          });
+    }
+
+    return (
         <div>
-            <NavBar />
-            <div>
-                {uid}
-            </div>  
+          <NavBar />
+          <div className="profile">
+            <div className="profile-container">
+              <h2 className="profile-header">Your Profile</h2>
+              <div className="profile-content">
+                <img src="pfp_placeholder.png"  className="profile-image" />
+                <h3 className="profile-name">Aanas Chowdhury</h3>
+                <p className="profile-bio">I am a point guard for the Los Angeles Lakers. I love Lebron. This is my UID {uid}</p>
+                <button onClick={editProfile}className="edit-profile-btn">Edit Profile</button>
+              </div>
+            </div>
+          </div>
         </div>
-    );
+      );
 }
 
 export default Profile

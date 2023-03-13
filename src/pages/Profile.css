@@ -1,0 +1,56 @@
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+  }
+  
+  .profile-container {
+    max-width: 500px;
+    padding: 20px;
+    border: black;
+    border-radius: 5px;
+
+  }
+  
+  .profile-header {
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
+
+  }
+  
+  .profile-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .profile-image {
+    height: 100px;
+  }
+  
+  .profile-name {
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+
+  }
+  
+  .profile-bio {
+    text-align: center;
+    margin-top: 20px;
+    font-family: 'Josefin Sans', sans-serif;
+  }
+  
+  .edit-profile-btn {
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+
+  }
