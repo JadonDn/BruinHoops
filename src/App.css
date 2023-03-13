@@ -1,6 +1,42 @@
 
 
+.App {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(245, 245, 220, 0.344);
+}
 
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: green;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -.0375rem;
+}
 
 .event-btn-container {
 display: flex;
@@ -8,8 +44,88 @@ display: flex;
 
 
 
+.App-link {
+  color: #61dafb;
+}
 
-  
+
+
+
+.rbc-allday-cell{
+  display: none;
+}
+
+
+.rbc-now{
+  background-color: beige;
+}
+
+
+.rbc-header.rbc-today{
+  background-color: #8ebff3;
+  color: black;
+}
+
+.rbc-time-header-cell {
+
+  background-color: #007bff;
+  color: #fff;
+}
+
+.rbc-btn-group button{
+  background-color: #007bff;
+  FONT-WEIGHT: 200;
+  border-radius: 10%;
+  font-size: 22px;
+  font-family: 'Josefin Sans', sans-serif;
+  color: #fff;
+  border: none;
+  border-radius: 28px;
+  cursor:pointer;
+}
+
+.rbc-toolbar button:active:hover, .rbc-toolbar button:active:focus,
+.rbc-toolbar button.rbc-active:hover, .rbc-toolbar button.rbc-active:focus
+ {
+  background-color: #8ebff3;
+  color: black;
+ }
+
+ .rbc-btn-group button:hover{
+  background-color: #8ebff3; 
+  color: #000; 
+}
+
+.rbc-btn-group button:focus {
+  background-color: #8ebff3; 
+  color: #000; 
+}
+
+ .rbc-toolbar button.rbc-active {
+  background-color: #8ebff3;
+  color: black;
+ }
+
+.rbc-toolbar-label{
+
+  FONT-WEIGHT: 200;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+  margin-top: 0px;
+  border-radius: 10%;
+  font-size: 20px;
+  font-family: 'Josefin Sans', sans-serif;
+  color: black;
+  border: none;
+  border-radius: 28px;
+
+}
+
+
+
+
 
 body.active-modal {
   overflow-y: hidden;
@@ -22,11 +138,33 @@ body.active-modal {
   padding: 5px 15px;
   display: flex;
   justify-content: flex-start;
-  font-size: 20px;
-  background-color: red;
   margin: 20px;
   margin-top: 0px;
   border-radius: 10%;
+  font-size: 30px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 28px;
+  cursor:pointer;
+} 
+
+.btn-modal:hover {      /* change look of actual modal btn */
+  FONT-WEIGHT: 200;
+  padding: 5px 15px;
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px;
+  margin-top: 0px;
+  border-radius: 10%;
+  font-size: 30px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #8ebff3; 
+  color: #000; 
+  border: none;
+  border-radius: 28px;
+  cursor:pointer;
 } 
 
 .modal {
@@ -39,7 +177,6 @@ body.active-modal {
   position: fixed;
   z-index: 1000;
   align-items: center;
-
 
 }
 
@@ -59,7 +196,8 @@ body.active-modal {
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  background: hsl(0, 0%, 92%);
+  font-family: 'Josefin Sans', sans-serif;
   padding: 14px 28px;
   border-radius: 3px;
   max-width: 600px;
@@ -73,26 +211,68 @@ body.active-modal {
   right: 10px;
   padding: 5px 7px;
   align-items: center;
+  FONT-WEIGHT: 200px;
+  display: flex;
+  border-radius: 10%;
+  font-size: 15px;
+  font-family: 'Josefin Sans', sans-serif;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 28px;
+  cursor:pointer;
+}
 
+.close-modal:hover {
+  background-color: red;
+  color: white;
 }
 
 
 .input-group {
   display: flex;
   align-items: center;
+  margin: 0 auto;
   margin-bottom: 10px;
   margin-top: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  justify-content: center;
+}
+
+.input-group-title {
+  padding-right: 40px;
+}
+
+
+
+.title-select {
+  align-items: center;
+  display: flex;
+    font-family: 'Josefin Sans', sans-serif;
+
 }
 
 .input-group label {
   margin-right: 10px;
   align-items: center;
+  font-family: 'Josefin Sans', sans-serif;
 
 }
 
-.input-group input,
-.input-group .react-datetime-picker {
-  flex: 1;
-  width: 180px;
+.custom-date-picker-start {
+
+  width: 200px;
   text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  height: 25px;
+
+}
+
+.custom-date-picker-end {
+
+  width: 201.5px;
+  text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  height: 25px;
+
 }
