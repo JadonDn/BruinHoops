@@ -23,13 +23,12 @@ const CreateAccount = () => {
            <input type="text" id="email" name="email" required></input>
            <label htmlFor="password">Password:</label>
            <input type="password" id="password" name="password" required></input>
+           <label htmlFor="Photo">Upload Your Photo:</label>
+           <input type="file" id="pfp" name="pfp" accept="image/png, image/jpeg" required></input>
            <button type ="submit" onClick={() => {register()}}>Register</button>
            </div>
            </div>
            </div>
-           
-           
-           
            );
     
 };
@@ -38,8 +37,9 @@ function register() {
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     var username = document.getElementById('username').value;
-    
-    createUserWithEmailAndPassword(auth, email, password)
+    var pfp = document.getElementById('pfp').value;    
+
+    createUserWithEmailAndPassword(auth, email, password, pfp)
     .then(function() {
         var user = auth.currentUser
         
@@ -48,7 +48,8 @@ function register() {
         var user_data = {
             email : email,
             last_login : Date.now(),
-            username : username
+            username : username,
+            profile_photo : pfp
         }
         
         database_ref.child('users/' + user.uid).set(user_data)
@@ -62,4 +63,7 @@ function register() {
         console.log(error);
     });
 }
+
+
+
 export default CreateAccount;
