@@ -8,11 +8,11 @@
 }
 
 
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 
 
@@ -27,19 +27,13 @@
   color: green;
 }
 
-.header-container {
-  display: flex;
-  align-items: center;
-  padding-left: 20px;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 40px;
-  font-weight: 800;
-  line-height: 1;
-  letter-spacing: -.0375rem;
-}
 
 .event-btn-container {
 display: flex;
+padding-left: 80px;
+justify-content: space-between;
+padding-right: 80px;
+
 }
 
 
@@ -47,9 +41,6 @@ display: flex;
 .App-link {
   color: #61dafb;
 }
-
-
-
 
 .rbc-allday-cell{
   display: none;
@@ -60,16 +51,46 @@ display: flex;
   background-color: beige;
 }
 
+.rbc-calendar {
+  color: black;
+}
+
+.rbc-time-view .rbc-day-slot {
+  border-right: 1px solid rgba(0, 0, 0, 0.132);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.132);
+  border-left: 1px solid rgba(0, 0, 0, 0.132);
+
+}
+
+
+
 
 .rbc-header.rbc-today{
   background-color: #8ebff3;
   color: black;
+  font-family: 'Josefin Sans', sans-serif;
+
 }
 
 .rbc-time-header-cell {
 
   background-color: #007bff;
   color: #fff;
+
+}
+
+
+
+.rbc-button-link{
+  font-family: 'Josefin Sans', sans-serif;
+
+}
+
+.rbc-toolbar-label {
+
+  font-family: 'Josefin Sans', sans-serif;
+  
+
 }
 
 .rbc-btn-group button{
@@ -121,6 +142,38 @@ display: flex;
   border: none;
   border-radius: 28px;
 
+}
+
+.rbc-label {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.rbc-time-gutter.rbc-time-column{
+
+  background-color: #007bff;
+  color: #fff;
+
+}
+
+.rbc-label.rbc-time-header-gutter
+{
+  border: none;
+  background-color: #007bff;
+}
+
+
+.rbc-event-label {
+  padding-top: 10px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 10px;
+
+}
+
+.rbc-event-content {
+  padding-top: 10px;
+  padding-left: 11px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 12px;
 }
 
 
@@ -275,4 +328,41 @@ body.active-modal {
   font-family: 'Josefin Sans', sans-serif;
   height: 25px;
 
+}
+
+.swal2-popup {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.swal2-title {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.swal2-content {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.swal2-actions {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.swal2-footer {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.swal2-confirm {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.swal2-html-container {
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: start;
+  line-height: 2;
+}
+.text-left {
+  text-align: left;
+}
+
+.swal2-popup.swal2-html {
+  text-align: left;
 }
