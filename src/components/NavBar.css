@@ -49,24 +49,7 @@
   }
  
 
- button[type = "contact"]{
-  top: 22%;
-    left: 50%;
-    transform: translate(-55%, -28%);
 
- 
-  color: whitesmoke;
-  font-family: 'Josefin Sans', sans-serif;
-  margin-left: 430px;
- 
-  padding: 10px 25px;
-  background-color: #007bff;
-  border-radius: 50px;
-  border: none;
-  cursor:pointer;
-  transition: all 0.2s ease 0s;
-  font-size: 70%;
-}
 
 .Navigation button:hover{
   background-color: rgb(0, 110, 129);
