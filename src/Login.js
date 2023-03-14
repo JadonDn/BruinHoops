@@ -2,14 +2,39 @@ import React from "react"
 import { Link } from "react-router-dom";
 import { goToLink } from './components/Utils';
 import {signInWithEmailAndPassword } from 'firebase/auth';
-import {auth} from './firebase';
-import firebase from 'firebase/compat/app';
+import {auth, db } from './firebase';
+import { setDoc, doc } from "firebase/firestore"
 import Swal from 'sweetalert2';
+import { useState } from "react";
 
 import './Login.css'
 
 function Login() {
-    return(
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const login = async (event) => {
+    
+    try{
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      const userRef = doc(db, "users", user.uid);
+      await setDoc(userRef, { last_login : Date.now() }, { merge : true}, {  
+    })
+    goToLink('/Home');
+  } catch(error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Incorrect Email or password!',
+      confirmButtonColor: '#007bff',
+      timerProgressBar: true,
+      timer: 4000
+    });
+    }
+  }
+
+  return(
         <div className="Login">
         <header className="Login-header">
           <p>
@@ -22,9 +47,9 @@ function Login() {
             <h1>Login Here</h1>
       <div>
         <label htmlFor ="email">Email</label>
-        <input type = "text" id ="email" name = "email"></input>
+        <input type = "text" id ="email" value={email} name = "email" onChange={(event) => setEmail(event.target.value)} required></input>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" name="password"></input>
+        <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)}required></input>
            <button type="submit" onClick={() => {login()} }>Login</button>
         <Link to="/Create-Account">
               Create Account
@@ -36,43 +61,6 @@ function Login() {
       </div>
     );
   };
-
-function login () {
-  var email = document.getElementById('email').value;
-  var password = document.getElementById('password').value;
-    
-  signInWithEmailAndPassword(auth, email, password)
-  .then(function() {
-    // Declare user variable
-    var user = auth.currentUser
-
-    // Add this user to Firebase Database
-    var database_ref = firebase.database().ref()
-
-    // Create User data
-    var user_data = {
-      last_login : Date.now()
-    }
-
-    // Push to Firebase Database
-    database_ref.child('users/' + user.uid).update(user_data)
-    goToLink("/Home")
-
-
-  })
-  .catch(function(error) {
-    // Firebase will use this to alert of its errors
-    var error_code = error.code
-    var error_message = error.message
-    Swal.fire({
-      icon: 'error',
-      title: 'Incorrect Email or password!',
-      confirmButtonColor: '#007bff',
-      timerProgressBar: true,
-      timer: 4000
-    });
-  })
-}
 
 
 
