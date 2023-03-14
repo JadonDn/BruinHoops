@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -229,11 +229,16 @@ function App() {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success',
-        )
+        Swal.fire({
+
+          title: 'Success!',
+          html: '<div style="text-align: center;">Your event has been deleted.',
+          icon: 'success',
+          confirmButtonColor: '#007bff',
+          timerProgressBar: true,
+          timer: 4000
+
+        })
         const newEvents = events.filter((event) => event.id !== clickedEvent.id);
         setEvents(newEvents);
       }
@@ -270,8 +275,9 @@ function App() {
       width: '800px',
       html: `
       <div style="text-align: left;   line-height: 1.5;      ">
-        • You may have only one room reserved per day.<br/>
-        • Events must be reserved at least 30 minutes and at most 2 hours.<br/>
+        • You can reserve courts by clicking 'Reserve' or by clicking on the calendar.<br/>
+        • You may have only one court reserved per day.<br/>
+        • Courts must be reserved at least 30 minutes and at most 2 hours.<br/>
         • If you do not confirm your reservation within the first 15 minutes, it will be cancelled.<br/>
         • Only one court can be reserved per user, per day.<br/>
         • Be responsible! Basketball courts rules and courtesies apply at all times.<br/>
@@ -282,6 +288,46 @@ function App() {
 
   }
 
+  useEffect(() => {
+    // Get canvas elements
+    const hitchMeter = document.getElementById("hitch-meter");
+    const woodenMeter = document.getElementById("wooden-meter");
+  
+    // Get canvas contexts for draawing
+    const hitchCtx = hitchMeter.getContext("2d");
+    const woodenCtx = woodenMeter.getContext("2d");
+
+
+    const now = new Date();
+    const hour = now.getHours();
+
+    let hitchValue;
+    let woodenValue;
+    // Generate values between 0 and 100
+    if (hour >= 8 && hour < 14) {
+      // Set values for 8am-2pm
+      hitchValue = Math.floor(Math.random() * 21) + 50; // round number down from random number between 50-70
+      woodenValue = Math.floor(Math.random() * 31) + 20;
+    } else if (hour >= 2 && hour < 20) {
+      // 2pm - 8pm
+      hitchValue = Math.floor(Math.random() * 31) + 20; // round number down from random number between 20-50
+      woodenValue = Math.floor(Math.random() * 51) + 50;// 50-100
+    } else {
+      // closed
+      hitchValue = 0;
+      woodenValue = 0;
+    }
+    // Set colors for the meters
+    const hitchColor = "#3f51b5";
+    const woodenColor = "#ff9800";
+    // Draw Hitch meter
+    hitchCtx.fillStyle = hitchColor; // set color
+    hitchCtx.fillRect(0, 0, hitchValue * 2, hitchMeter.height); // make rectangle, start at (0,0), width = hitchvalue * 2, height of hitchmeter
+    // Draw Wooden meter
+    woodenCtx.fillStyle = woodenColor;
+    woodenCtx.fillRect(0, 0, woodenValue * 2, woodenMeter.height);
+  }, []);
+
   
 
   return (
@@ -290,11 +336,20 @@ function App() {
         <NavBar />
       </div>
       <div className="event-btn-container" >
-        <button onClick={toggleModal}className="btn-modal"> Reserve </button>
+        <button onClick={toggleModal}className="btn-modal"> Reserve </button>    
+        <div class="meter">
+          <span class="hitch-meter-label">Hitch Activity:</span>
+          <canvas class="meter-canvas" id="hitch-meter" ></canvas>
+        </div>
+        <div class="meter"> 
+          <span class="wooden-meter-label">Wooden Activity:</span>
+          <canvas class="meter-canvas" id="wooden-meter" ></canvas>
+        </div>
+
         <button onClick={termsPopup}className="btn-modal"> Terms </button>
       </div>
       <div style={{clear: 'both'}}></div>
-      <div style={{paddingTop: '1px'}}>
+      <div style={{paddingTop: '20px'}}>
         <Calendar
           localizer={localizer}
           events={events}
@@ -371,7 +426,7 @@ function App() {
                 minDate={startDate}
                 maxDate={startDate}
                 minTime={setMinutes(startDate, 30)}
-                maxTime={new Date().setHours(20, 0)}
+                maxTime={setMinutes(startDate, 120)}
                 dateFormat="MMMM d, yyyy h:mm aa"
                 className="custom-date-picker-end"
                 />
