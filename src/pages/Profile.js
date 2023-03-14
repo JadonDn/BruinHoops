@@ -1,63 +1,61 @@
 import './Profile.css';
 import NavBar from "../components/NavBar";
-import { auth, database } from '../firebase';
-import { ref, child, get, getDatabase } from 'firebase/database';
-import { onAuthStateChanged, getAuth } from '@firebase/auth';
-import { useState } from 'react';
+import { auth, db } from '../firebase';
+import { doc, getDoc } from "firebase/firestore";
+// import { onAuthStateChanged } from '@firebase/auth';
+import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 
+const Profile = () => {
+    // const [Uid, setUid] = useState('');
+    const [userData, setuserData] = useState(undefined);
 
+    useEffect(() => {
+        const user = auth.currentUser
+        const fetchUserData = async () => {
+        const userRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(userRef);
+        if (docSnap.exists()) {
+            setuserData(docSnap.data());
+        } 
+    };    
+    fetchUserData();
+    }, []);
 
-
-
-function Profile() {
-
-    const user = auth.currentUser;
-    if (user !== null) {;
-        var uid = user.uid;   
-    }
-    // const auth = getAuth();
-    // const db = getDatabase();
-    // var dbRef = firebase.database().ref()
-
-    // onAuthStateChanged(auth, async (user) => { 
-    //     const snap = await get(child(dbRef, `users/${user.uid}`));
-    //     console.log(snap.val());
-      
-    //     if (snap.exists()) {
-    //       displayName.innerText = "Currently logged in as: " + user.email;
-    //       displayID.innerText = "School ID: " + user.schoolID;
-    //       displayEmail.innerText = "Email: " + user.email;
-    //       displayUsername.innerText = "Username: " + user.username;
-    //       displayLogin.innerText = "Account Creation: " + user.last_login;
-    //     }
-    //   })
-
-    const editProfile = () => {
-
-        Swal.fire({
-            icon: 'error',
-            title: 'CHANGE ME!',
-            confirmButtonColor: '#007bff',
-          });
-    }
+    // onAuthStateChanged(auth, (user) => {
+    //     if (user) {
+    //         setUid(user.uid);
+    //         fetchUserData();
+    //     } else {
+    //         // user signed out
+    //     } 
+    // });
 
     return (
         <div>
-          <NavBar />
-          <div className="profile">
-            <div className="profile-container">
-              <h2 className="profile-header">Your Profile</h2>
-              <div className="profile-content">
-                <img src="pfp_placeholder.png"  className="profile-image" />
-                <h3 className="profile-name">Aanas Chowdhury</h3>
-                <p className="profile-bio">I am a point guard for the Los Angeles Lakers. I love Lebron. This is my UID {uid}</p>
-                <button onClick={editProfile}className="edit-profile-btn">Edit Profile</button>
-              </div>
+            <NavBar />
+            <div className="profile">
+                <div className="profile-container">
+                    <h2 className="profile-header">Your Profile</h2>
+                    <div className="profile-content">
+                        <img src={userData?.profile_photo}  className="profile-image" alt = "Loading..." />
+                        <h3 className="profile-name">{userData?.username}</h3>
+                        <h4 className="profile-email">{userData?.email}</h4>
+                        <p className="profile-bio">I am a point guard for the Los Angeles Lakers. I love Lebron.</p>
+                        <button onClick={editProfile}className="edit-profile-btn">Edit Profile</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      );
+    );
 }
 
-export default Profile
+const editProfile = () => {
+    Swal.fire({
+        icon: 'error',
+        title: 'CHANGE ME!',
+        confirmButtonColor: '#007bff',
+    });
+}
+
+export default Profile;
