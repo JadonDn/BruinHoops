@@ -71,6 +71,7 @@ padding-right: 80px;
 .rbc-event:hover::before {
   content: "X";
   color: black;
+  font-family: 'Josefin Sans', sans-serif;
   position: absolute;
   top: 0;
   right: 0;
@@ -422,8 +423,11 @@ body.active-modal {
 }
 .text-left {
   text-align: left;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 .swal2-popup.swal2-html {
   text-align: left;
+  font-family: 'Josefin Sans', sans-serif;
+
 }
