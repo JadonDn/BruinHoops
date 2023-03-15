@@ -20,7 +20,7 @@ const NavBar = () => {
            </li>
            <li>
               <Link to="/App">
-                <a>Your Events</a>
+                <a>Events</a>
               </Link>
            </li>
            <li>  
