@@ -11,7 +11,7 @@
     text-align: center;
   
     position:absolute;
-    top: 20%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -27,7 +27,7 @@
     line-height: 1.4;
     color: #0f1031;
     margin: 0 auto 24px;
-    
+    padding-top: 10px;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -39,7 +39,7 @@
     position: absolute;
     top: 28%;
     left: 50%;
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -22%);
   }
   
 .Contact form{
@@ -47,7 +47,7 @@
     background-color: white;
     font-family: 'Josefin Sans', sans-serif;
             position: absolute;
-            top: 63%;
+            top: 69%;
             left: 50%;
             transform: translate(-50%, -50%);
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
