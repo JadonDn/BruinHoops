@@ -52,7 +52,9 @@
     background-color: white;
     font-family: 'Josefin Sans', sans-serif;
             position: absolute;
-          align-items: center;
+            top: 69%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
         padding-top: 3.06vw;
         padding-right: 4.06vw;
