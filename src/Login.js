@@ -47,12 +47,12 @@ function Login() {
             <h1>Login Here</h1>
       <div>
         <label htmlFor ="email">Email</label>
-        <input type = "text" id ="email" value={email} name = "email" onChange={(event) => setEmail(event.target.value)} required></input>
+        <input type = "text" id ="email" value={email} name = "email" onChange={(event) => setEmail(event.target.value)} required placeholder="Type Your Email"></input>
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)}required></input>
+        <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)}required placeholder="Type Your Password"></input>
            <button type="submit" onClick={() => {login()} }>Login</button>
         <Link to="/Create-Account">
-              Create Account
+              <a>Create Account</a>
         </Link>
       </div>
     </div>

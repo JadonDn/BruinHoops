@@ -4,7 +4,7 @@
   text-align: center;
   justify-content: center;
   align-items: center;
-  background-color: rgba(245, 245, 220, 0.344);
+  background-color:#f1f1f1;
 }
 
 
@@ -50,7 +50,7 @@ padding-right: 80px;
 
 
 .rbc-now{
-  background-color: beige;
+  background-color: #f1f1f1;
 }
 
 .rbc-calendar {

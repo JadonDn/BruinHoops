@@ -12,18 +12,24 @@
   color: #24252A;
   text-decoration: none;
   font-weight: bold;
+  
 }
 .Navigation header{
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 10%;
+  background-color: rgb(233, 233, 233);
 }
 
 .logo{
   order: 3;
   cursor: pointer;
-  height: 100px;  
+  height: 100px;
+  position: absolute;
+  top: 8%;
+  left: 10%;
+  transform: translate(-50%, -50%);
 }
 
 .navlinks{

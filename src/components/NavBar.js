@@ -25,7 +25,7 @@ const NavBar = () => {
            </li>
            <li>  
               <Link to="/Contact">
-              <button type = "submit">Contact Us</button>
+              <a>Contact Us</a>
               </Link>
               </li>
             <li>
