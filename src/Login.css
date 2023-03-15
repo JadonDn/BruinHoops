@@ -3,6 +3,7 @@
 
 .Login {
     text-align: center;
+    font-family: 'Josefin Sans', sans-serif;
   }
   .Login h3{
     color: goldenrod; 
@@ -26,7 +27,7 @@
    
     position: absolute;
     top: 26%;
-    left: 50%;
+    left: 55.5%;
     transform: translate(-171%, -50%);
     font-size: 80px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
@@ -46,7 +47,7 @@
    
   }
   
-  .login-Section a{
+  .Login a{
     font-size: 15px;
     font-family: 'Josefin Sans', sans-serif;
   }
@@ -70,7 +71,7 @@
     height: auto;
     color: #007bff;
     text-align: center;
-    font-size: 25px;
+    font-size: 19px;
     position:absolute;
     top: 36%;
     left: 50%;
@@ -90,13 +91,10 @@
   
   .Login input[type="text"],
  .Login input[type="password"] {
-    font-size: 2vmin;
-    font-family: 'Josefin Sans', sans-serif;
-   
-    padding: 1px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px; 
+  border: 2px solid #ccc;
 
   }
   
@@ -133,3 +131,16 @@
     font-family: 'Josefin Sans', sans-serif;
   
   } 
+
+  .Login input[placeholder = "Type Your Email"]{
+    font-family: 'Josefin Sans', sans-serif;
+
+    font-size: 13px;
+    padding: 6px;
+  }
+  .Login input[placeholder = "Type Your Password"]{
+  font-family: 'Josefin Sans', sans-serif;
+
+    font-size: 13px;
+    padding: 6px;
+  }

@@ -19,10 +19,10 @@
     
     display: block;
 }
-.Create a{
-    color: #2890ff; /* blue color */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* drop shadow */
-    /* gold gradient */
+/* .CreateAccount div{
+     color: #2890ff; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); 
+   
    font-size: 30px;
 
     top: 30%;
@@ -39,14 +39,14 @@
   white-space: nowrap;
   border-right: 3px solid #000;
   width: 0;
-  animation: typing 1s steps(30, end) forwards;
-}
-.Create input[value="Create Account"]{
+  animation: typing 1s steps(30, end) forwards; 
+} */
+/* .Create input[value="Create Account"]{
     font-size: 20px;
     font-style: italic;
 
-}
-
+} */
+/* 
 @keyframes typing {
     from {
       width: 0;
@@ -54,12 +54,12 @@
     to {
       width: 100%;
     }
-  }
-.Create form{
+  } */
+/* .Create form{
     display: flex;
     flex-direction: column;
     text-align: center;
-}
+} */
 
 .Create{
 background-color: white;
@@ -87,7 +87,7 @@ font-family: 'Josefin Sans', sans-serif;
     border-radius: 5px;
     cursor:pointer;
    
-  }
+}
  .Create input[type="text"],
 .Create input[type="password"],
 .Create input[type="email"] {
@@ -108,4 +108,8 @@ font-family: 'Josefin Sans', sans-serif;
  .Create input[type="submit"]:hover {
     
     background-color: lightblue;
+  }
+
+  .Create input[placeholder]{
+    font-family: 'Josefin Sans', sans-serif;
   }

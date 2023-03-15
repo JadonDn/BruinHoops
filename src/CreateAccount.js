@@ -54,11 +54,11 @@ const CreateAccount = () => {
            <div>
            <div>Create Account</div>
            <label htmlFor="username">Username:</label>
-           <input type="text" id="username" value={username} name="username" onChange={(event) => setUsername(event.target.value)} required></input>
+           <input type="text" id="username" value={username} name="username" onChange={(event) => setUsername(event.target.value)} required placeholder='Create a Username'></input>
            <label htmlFor="email">Email:</label>
-           <input type="text" id="email" value={email} name="email" onChange={(event) => setEmail(event.target.value)} required></input>
+           <input type="text" id="email" value={email} name="email" onChange={(event) => setEmail(event.target.value)} required placeholder='Create an Email'></input>
            <label htmlFor="password">Password:</label>
-           <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)} required></input>
+           <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)} required placeholder='Create a Password'></input>
            <label htmlFor="Photo">Upload Your Photo:</label>
            <input type="file" id="pfp" name="pfp" accept="image/png, image/jpeg" onChange={(event) => setPfp(event.target.value)} required></input>
            <button type ="submit" onClick={() => {register()} }>Register</button>

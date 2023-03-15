@@ -17,7 +17,7 @@ function Home() {
   <p>Find Teammates and set up basketball games at Hitch and John Wooden Center courts!</p>
   <button type="Getstarted" onClick={() => {goToLink('/App')} }>Get Started</button>
   <form>
-  <input type="text" placeholder="Search for events/players..."></input>
+  <input type="text" placeholder="Search for players' events..."></input>
   <button type="search">Search</button>
 </form>
 

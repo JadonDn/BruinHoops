@@ -11,7 +11,7 @@ function Contact() {
              
             <div class="Contact">
         <h1>Have any questions?</h1>
-        <p>For any inquiries please contact us through email!</p>
+        <p>For any inquiries, please contact us through email!</p>
         <form target="_blank" action="https://formsubmit.co/mtelezing23@gmail.com" method="POST">
           <div class="form-group">
             <div class="form-row">
