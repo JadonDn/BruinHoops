@@ -2,18 +2,15 @@ import './Profile.css';
 import NavBar from "../components/NavBar";
 import { auth, db } from '../firebase';
 import { doc, getDoc } from "firebase/firestore";
-// import { onAuthStateChanged } from '@firebase/auth';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 
-
-
 const Profile = () => {
 
-    const localizer = momentLocalizer(moment);
+const localizer = momentLocalizer(moment);
 
 const [view, setView] = useState('week');
 const [events, setEvents] = useState([]);  
@@ -39,13 +36,9 @@ const eventStyleGetter = (event) => {
     return localizer.format(date, 'MMMM YYYY');
   };
 
-  
-    // const [Uid, setUid] = useState('');
     const [userData, setuserData] = useState(null);
 
     useEffect(() => {
-       
-
         const fetchUserData = async () => {
           const user = auth.currentUser;
         const docRef = doc(db, "users", user.uid);
@@ -58,15 +51,6 @@ const eventStyleGetter = (event) => {
     };    
     fetchUserData();
     }, []);
-
-    // onAuthStateChanged(auth, (user) => {
-    //     if (user) {
-    //         setUid(user.uid);
-    //         fetchUserData();
-    //     } else {
-    //         // user signed out
-    //     } 
-    // });
 
     return (
         <div>

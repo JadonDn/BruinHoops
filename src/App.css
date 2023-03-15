@@ -41,6 +41,9 @@ padding-right: 80px;
   color: #61dafb;
 }
 
+
+
+
 .rbc-allday-cell{
   display: none;
 }
@@ -60,8 +63,14 @@ padding-right: 80px;
   border-left: 1px solid rgba(0, 0, 0, 0.132);
 
 }
+
+
+
+
+
 .rbc-event:hover::before {
   content: "X";
+  color: black;
   position: absolute;
   top: 0;
   right: 0;
@@ -193,7 +202,42 @@ padding-right: 80px;
 }
 
 
+.meter {
+  display: flex;
+  align-items: center;
+  margin-left: 120px; 
+}
 
+canvas {
+  margin-left: 40px;
+  width: 200px;
+  height: 5px;
+  margin: 0 10px;
+  margin-bottom: 23px;  
+}
+
+.meter-canvas {
+  margin-right: 20px; /* add more margin to the right */
+  margin-top: 49px;
+  width: 120px;
+  border: 1px solid #ccc;
+}
+
+.wooden-meter-label {
+  font-size: 15px;
+  font-weight: bold;  
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 25px;
+  width: 120px;
+}
+
+.hitch-meter-label {
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'Josefin Sans', sans-serif;
+  margin-top: 25px;
+  width: 98px;
+}
 
 
 body.active-modal {
@@ -207,6 +251,7 @@ body.active-modal {
   padding: 5px 15px;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   margin: 20px;
   margin-top: 0px;
   border-radius: 10%;
