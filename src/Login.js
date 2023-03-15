@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { goToLink } from './components/Utils';
 import {signInWithEmailAndPassword } from 'firebase/auth';
 import {auth, db } from './firebase';
-import { setDoc, doc } from "firebase/firestore"
+import { updateDoc, doc } from "firebase/firestore"
 import Swal from 'sweetalert2';
 import { useState } from "react";
 
@@ -20,7 +20,7 @@ function Login() {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const userRef = doc(db, "users", user.uid);
-      await setDoc(userRef, { last_login : Date.now() }, { merge : true}, {  
+      await updateDoc(userRef, { last_login : Date.now() }, { merge : true}, {  
     })
     goToLink('/Home');
   } catch(error) {
