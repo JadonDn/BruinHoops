@@ -1,7 +1,8 @@
 import './Profile.css';
 import NavBar from "../components/NavBar";
 import { auth, db } from '../firebase';
-import { doc, getDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { onAuthStateChanged} from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -39,17 +40,19 @@ const eventStyleGetter = (event) => {
     const [userData, setuserData] = useState(null);
 
     useEffect(() => {
-        const fetchUserData = async () => {
-          const user = auth.currentUser;
-        const docRef = doc(db, "users", user.uid);
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            setuserData(docSnap.data());
-        } else {
-            console.log("No such document!");
-        }
-    };    
+        onAuthStateChanged(auth, (user) => {
+            const fetchUserData = async () => {
+              const user = auth.currentUser;
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setuserData(docSnap.data());
+            } else {
+                console.log("No such document!");
+            }
+        };
     fetchUserData();
+        })
     }, []);
 
     return (
@@ -59,14 +62,11 @@ const eventStyleGetter = (event) => {
                 <div className="profile-container">
                     <h2 className="profile-header">Your Profile</h2>
                     <div className="profile-content">
-                        <img src = "pfp_placeholder.png" className='profile-image'></img>
+                        <img src = {userData?.profile_photo}className='profile-image'></img>
                         <h3 className="profile-name">Username: {userData?.username}</h3>
                         <h4 className="profile-email">Email: {userData?.email}</h4>
-                        <p className="profile-bio">"insert bio"</p>
+                        <p className="profile-bio">Bio: {userData?.bio}</p>
                         <button onClick={editProfile}className="">Edit Bio</button>
-                       
-                     
-
                     </div>
                 </div>
             </div>
@@ -93,11 +93,28 @@ const eventStyleGetter = (event) => {
 }
 
 const editProfile = () => {
+    const uid = auth.currentUser.uid
+    const userRef = doc(db, "users", uid)
     Swal.fire({
-        icon: 'error',
-        title: 'CHANGE ME!',
-        confirmButtonColor: '#007bff',
-    });
+      title: 'Write a bio',
+      input: 'text',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Confirm',
+      showLoaderOnConfirm: true,
+      preConfirm: (login) => {
+          updateDoc(userRef, { bio : login }, { merge : true}, {
+        })
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+            setTimeout(()=>{
+                    window.location.reload(false);
+                }, 500);
+        }
+    })
 }
-
 export default Profile;
