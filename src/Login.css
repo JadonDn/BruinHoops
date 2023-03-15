@@ -55,7 +55,7 @@
   .login-Section{
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
  
-    padding-top: 4.0vw;
+    padding-top: 2.0vw;
     padding-right: 4.0vw;
     padding-bottom: 4.0vw;
     padding-left: 4.0vw;
@@ -71,11 +71,9 @@
     height: auto;
     color: #007bff;
     text-align: center;
-    font-size: 19px;
-    position:absolute;
-    top: 36%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    font-size: 25px;
+  
+   
     
     font-family: 'Josefin Sans', sans-serif;
   }

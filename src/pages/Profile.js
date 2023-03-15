@@ -63,7 +63,7 @@ const eventStyleGetter = (event) => {
                         <h3 className="profile-name">Username: {userData?.username}</h3>
                         <h4 className="profile-email">Email: {userData?.email}</h4>
                         <p className="profile-bio">"insert bio"</p>
-                        <button onClick={editProfile}className="edit-profile-btn">Edit Bio</button>
+                        <button onClick={editProfile}className="">Edit Bio</button>
                        
                      
 

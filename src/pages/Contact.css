@@ -4,14 +4,14 @@
     text-align: center;
     margin: 35px 0 20px 0 !important;
     margin: 0 auto 20px;
-    transition: all 0.2s ease;
+   
  
-    height: auto;
-    color: #007bff;
-    text-align: center;
+
+ 
   
+  color:#007bff;
     position:absolute;
-    top: 20%;
+    top: 22%;
     left: 50%;
     transform: translate(-50%, -50%);
 
@@ -24,10 +24,10 @@
   .Contact p{
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1.15rem;
-    line-height: 1.4;
+    line-height: 1.4rem;
     color: #0f1031;
     margin: 0 auto 24px;
-    
+    padding-top: 10px;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
@@ -39,25 +39,28 @@
     position: absolute;
     top: 28%;
     left: 50%;
-    transform: translate(-50%, -25%);
+    transform: translate(-50%, -22%);
   }
   
 .Contact form{
+    
   
+    top: 69%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+      
     background-color: white;
     font-family: 'Josefin Sans', sans-serif;
             position: absolute;
-            top: 63%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+          align-items: center;
         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.6);
         padding-top: 3.06vw;
         padding-right: 4.06vw;
         padding-bottom: 3.06vw;
         padding-left: 4.06vw;
         border-radius: 10px;
-        overflow: auto;
-        resize: vertical;
+     
+       
 }
 .Contact input[type = "text"] 
 {
