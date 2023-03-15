@@ -8,8 +8,12 @@ import Swal from 'sweetalert2';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import NavBar from './components/NavBar';
-import firebase from 'firebase/compat/app';
-import { database } from 'firebase/compat/app';
+import { doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { deleteDoc} from "firebase/firestore";
+import {app, auth, db} from './firebase'
+import { getAuth } from "firebase/auth";
+import { collection, addDoc, updateDoc, arrayUnion, query, where } from "firebase/firestore";
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -218,53 +222,7 @@ function App() {
     handleDeleteEvent(event);
   };
 
-  const handleDeleteEvent = (clickedEvent) => {
-    Swal.fire({
-      title: 'Delete Reservation?',
-      html: '<div style="text-align: center;">You cannot revert this!</div>',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#007bff',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-
-          title: 'Success!',
-          html: '<div style="text-align: center;">Your event has been deleted.',
-          icon: 'success',
-          confirmButtonColor: '#007bff',
-          timerProgressBar: true,
-          timer: 4000
-
-        })
-        const newEvents = events.filter((event) => event.id !== clickedEvent.id);
-        setEvents(newEvents);
-      }
-
-    })
-  };
-
   
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if(modalEventCheck(startDate, endDate, title))
-    {
-      const newEvent = {
-        id: events.length + 1,
-        title: title,
-        start: startDate,
-        end: endDate,
-      };
-      setEvents([...events, newEvent]);
-    }
-
-  
-    toggleModal();
-  };
 
   const termsPopup = () => {
 
@@ -289,21 +247,18 @@ function App() {
   }
 
   useEffect(() => {
-    // Get canvas elements
+
     const hitchMeter = document.getElementById("hitch-meter");
     const woodenMeter = document.getElementById("wooden-meter");
-  
-    // Get canvas contexts for draawing
+    // Get canvas contexts for drawing
     const hitchCtx = hitchMeter.getContext("2d");
     const woodenCtx = woodenMeter.getContext("2d");
-
-
     const now = new Date();
     const hour = now.getHours();
-
     let hitchValue;
     let woodenValue;
-    // Generate values between 0 and 100
+
+    // Generate values between 0 and 100, activity based on google popular times averages
     if (hour >= 8 && hour < 14) {
       // Set values for 8am-2pm
       hitchValue = Math.floor(Math.random() * 21) + 50; // round number down from random number between 50-70
@@ -326,7 +281,104 @@ function App() {
     // Draw Wooden meter
     woodenCtx.fillStyle = woodenColor;
     woodenCtx.fillRect(0, 0, woodenValue * 2, woodenMeter.height);
+
+    
   }, []);
+
+
+  // start of firebase backend stufff
+  const user = getAuth().currentUser;
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    
+    if (modalEventCheck(startDate, endDate, title)) {
+      const newEvent = {
+        title: title,
+        start: startDate,
+        end: endDate,
+      };
+  
+      // Add the new event to the user's events in Firebase
+      try {
+        const eventsRef = collection(db, "users", user.uid, "events");
+        const docRef = doc(eventsRef, uuidv4()); // give unique id to each doc
+        await setDoc(docRef, {
+          title: newEvent.title,
+          start: newEvent.start,
+          end: newEvent.end
+        });
+        const docId = docRef.id;
+  
+        // Update the event's ID in Firebase to match its Firestore document ID
+        await updateDoc(doc(db, "users", user.uid, "events", docId), { id: docId });
+    
+        // Update the local events state with the new event
+        setEvents([...events, { ...newEvent, id: docRef.id }]);  // keep that id for local events
+        toggleModal();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+
+  const handleDeleteEvent = (clickedEvent) => {
+    console.log(clickedEvent);
+
+    Swal.fire({
+      title: 'Delete Reservation?',
+      html: '<div style="text-align: center;">You cannot revert this!</div>',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#007bff',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+
+          title: 'Success!',
+          html: '<div style="text-align: center;">Your event has been deleted.',
+          icon: 'success',
+          confirmButtonColor: '#007bff',
+          timerProgressBar: true,
+          timer: 4000
+
+        })
+        try {
+          console.log(clickedEvent.id);
+          const uid= user.uid;
+          const delEventRef = collection(db, "users", uid, "events");
+          const q = query(delEventRef, where("id", "==", clickedEvent.id));
+          const querySnapshot = await getDocs(q);
+          querySnapshot.forEach(async (doc) => {
+            await deleteDoc(doc.ref);
+          });
+        } catch (error) {
+          Swal.fire({
+
+            title: 'Error!',
+            html: '<div style="text-align: center;">Your event has NOT been deleted.',
+            icon: 'error',
+            confirmButtonColor: '#007bff',
+            timerProgressBar: true,
+            timer: 4000
+  
+          })
+          console.error("Error deleting event: ", error);
+        }
+        const newEvents = events.filter((event) => event.id !== clickedEvent.id);
+        setEvents(newEvents);
+      }
+    })
+  };
+
+
+  
+
 
   
 
