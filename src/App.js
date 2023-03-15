@@ -18,17 +18,14 @@ import { v4 as uuidv4 } from 'uuid';
 
 
 
-
-
 function App() {
 
   
   const localizer = momentLocalizer(moment);
-
   const [view, setView] = useState('week');
   const [events, setEvents] = useState([]);
-
   
+
 
   const eventStyleGetter = (event) => {
     return {
@@ -69,7 +66,7 @@ function App() {
     const { star } = start;
     const {en} = end;
     const canAdd = canAddEvent(start, end, events);
-    const isNotAllowed = moment(start).hour() < 8 || moment(end).hour() > 20; // set the time range here
+    const isNotAllowed = moment(start).hour() < 8 || moment(end).hour() > 20 || moment(start).isBefore(moment()) ; // set the time range 
     const eventDuration = moment.duration(moment(end).diff(moment(start))).asHours(); // get the duration of the event in hours
     const maxEventDuration = 2;
     const minEventDuration = 0.5;
@@ -165,7 +162,7 @@ function App() {
   const handleSelectSlot = (slotInfo) => {
     const { start, end } = slotInfo;
     const canAdd = canAddEvent(start, end, events);
-    const isNotAllowed = moment(start).hour() < 8 || moment(end).hour() > 20; // set the time range here
+    const isNotAllowed = moment(start).hour() < 8 || moment(end).hour() > 20 || moment(start).isBefore(moment()); // set the time range 
     const eventDuration = moment.duration(moment(end).diff(moment(start))).asHours(); // get the duration of the event in hours
     const maxEventDuration = 2;
     const minEventDuration = 0.5;
@@ -246,7 +243,7 @@ function App() {
 
   }
 
-  useEffect(() => {
+  useEffect(() => { // for activity meters
 
     const hitchMeter = document.getElementById("hitch-meter");
     const woodenMeter = document.getElementById("wooden-meter");
@@ -257,6 +254,7 @@ function App() {
     const hour = now.getHours();
     let hitchValue;
     let woodenValue;
+
 
     // Generate values between 0 and 100, activity based on google popular times averages
     if (hour >= 8 && hour < 14) {
@@ -282,8 +280,45 @@ function App() {
     woodenCtx.fillStyle = woodenColor;
     woodenCtx.fillRect(0, 0, woodenValue * 2, woodenMeter.height);
 
-    
+    const fetchUserData = async () => {
+      const user = auth.currentUser;
+      const docRef = doc(db, "users", user.uid, "events");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setEvents(docSnap.data()); // set events state to retrieved data
+      } else {
+        console.log("No such document!");
+      }
+    };    
+    fetchUserData();
+}, );
+
+
+
+  useEffect(() => {
+
+    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    const savedEvents = storedEvents.map(event => ({
+      ...event,
+      start: new Date(event.start),
+      end: new Date(event.end),
+      title: event.title
+    }));
+
+  
+    setEvents(savedEvents);
   }, []);
+
+
+const deleteEvents = (() => { //// button used for testing when adding events DELETE BEFORE SUBMITTING!!!!!!!!
+
+
+  localStorage.removeItem("events");
+  setEvents([]);
+
+
+})
+  
 
 
   // start of firebase backend stufff
@@ -300,7 +335,22 @@ function App() {
         start: startDate,
         end: endDate,
       };
-  
+
+      const eventObject = {
+        title: newEvent.title,
+        start: new Date(newEvent.start),
+        end: new Date(newEvent.end)
+      };
+       
+      const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+      storedEvents.push(eventObject);
+      localStorage.setItem('events', JSON.stringify(storedEvents));
+
+
+      setEvents(storedEvents);
+
+
+
       // Add the new event to the user's events in Firebase
       try {
         const eventsRef = collection(db, "users", user.uid, "events");
@@ -401,6 +451,7 @@ function App() {
         <button onClick={termsPopup}className="btn-modal"> Terms </button>
       </div>
       <div style={{clear: 'both'}}></div>
+      <button onClick={deleteEvents}className="btn-modal"> Delete All events </button>
       <div style={{paddingTop: '20px'}}>
         <Calendar
           localizer={localizer}

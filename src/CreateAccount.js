@@ -27,7 +27,8 @@ const CreateAccount = () => {
                 last_login : Date.now(),
                 username : username,
                 password : password,
-                profile_photo : pfp
+                profile_photo : pfp,
+                bio : "insert bio"
             })
             goToLink('/Home');
         }

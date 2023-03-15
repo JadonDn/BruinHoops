@@ -8,14 +8,14 @@ import { auth, db } from "../firebase";
 
 function Home() {
 
-  const [query, setQuery] = useState('');
+  const [Query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   
     useEffect(() => {
       const fetchUserData = async () => {
-        if(query.trim() !== '') {
+        if(Query.trim() !== '') {
           const usersRef = collection(db, "users");
-          const q = query(usersRef, where("username", "==", query.trim()));
+          const q = query(usersRef, where("username", "==", Query.trim()));
           const querySnapshot = await getDocs(q);
           const data = [];
             querySnapshot.forEach((doc) => {
@@ -26,7 +26,7 @@ function Home() {
         else { setResults([]); }
       }
       fetchUserData();
-    }, [query]);
+    }, [Query]);
 
     function handleChange(event) {
       setQuery(event.target.value);
@@ -46,7 +46,7 @@ function Home() {
   <div className = "search-bar">
   </div>
   <div>
-      <input type="text" value={query} onChange={handleChange} placeholder="Search for players/events..."/>
+      <input type="text" value={Query} onChange={handleChange} placeholder="Search for players/events..."/>
       {results.map(result => (
         <div key={result.id}>{result.username}</div>
       ))}
