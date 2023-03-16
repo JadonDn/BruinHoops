@@ -28,7 +28,8 @@ const CreateAccount = () => {
                 last_login : Date.now(),
                 username : username,
                 password : password,
-                bio : "insert bio"
+                bio : "insert bio",
+                uid : user.uid
             })
             const fileRef = ref(storage, "images/" + user.uid + ".png");
             await uploadBytes(fileRef, pfp);

@@ -49,3 +49,18 @@ export function convertInput(input, toBase64) {
     }
   }
   
+  export function getCircularImageSrc(imgSrc) {
+    const canvas = document.createElement('canvas');
+    const img = new Image();
+    img.src = imgSrc;
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.beginPath();
+    ctx.arc(canvas.width/2, canvas.height/2, canvas.width/2, 0, 2 * Math.PI);
+    ctx.closePath();
+    ctx.clip();
+    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    return canvas.toDataURL();
+  }
+  

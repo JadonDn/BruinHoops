@@ -499,7 +499,6 @@ const deleteEvents = (() => {
         localStorage.removeItem("events");
         setEvents(newEvents);
 
-        const uid = user.uid;
         const eventTitle = clickedEvent.title;
         const eventRef = collection(db, "users", user.uid, "events");
         const eventQuery = query(eventRef, where("title", "==", eventTitle));   // delete event from user's events on firebase
