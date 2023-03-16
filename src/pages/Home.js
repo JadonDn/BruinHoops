@@ -13,25 +13,17 @@ function Home() {
   const [Query, setQuery] = useState('');
   const [results, setResults] = useState([]);  
 
-    useEffect(() => {
-      const fetchUserData = async () => {
-        if(Query.trim() !== '') {
-          const usersRef = collection(db, "users");
-          const q = query(usersRef, where("username", "==", Query.trim()));
-          const querySnapshot = await getDocs(q);
-          const data = [];
-            querySnapshot.forEach((doc) => {
-            data.push(doc.data());
-            });
-            setResults(data);
-        }  
-        else { setResults([]); }
-      }
-      fetchUserData();
-    }, [Query]);
+    const fetchUserData = async () => {
+      if(Query.trim() !== '') {
+        const usersRef = collection(db, "users");
+        const q = query(usersRef, where("username", "==", Query.trim()));
+        const querySnapshot = await getDocs(q);
+        setResults(querySnapshot.docs.map((doc) => doc.data()));
+      }  
+      else { setResults([]); }
+    }
 
     function handleChange(event) {
-      // var filter = event.target.value.toUpperCase();
       setQuery(event.target.value);
     }
   
@@ -74,7 +66,8 @@ function Home() {
   <form>
   <div className = "search-bar">
   <div>
-      <input className="search-input" type="text" value={Query} onChange={handleChange} placeholder="Search for players/events..."/>
+      <input className="search-input" type="text" value={Query} placeholder="Search for players/events..." onChange={handleChange}></input>
+      <button type="button" onClick={() => {fetchUserData()}}>Search</button>
       <div className="dropdown">
       {results.map(user => (
         <li className="user-list" key={user.uid} onClick={() => {handleUserClick(user)}}>{user.username}</li>

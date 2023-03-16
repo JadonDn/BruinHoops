@@ -20,7 +20,7 @@ function Login() {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       const userRef = doc(db, "users", user.uid);
-      await updateDoc(userRef, { last_login : Date.now(), uid : user.uid }, { merge : true}, {  
+      await updateDoc(userRef, { last_login : Date.now()   }, { merge : true}, {  
     })
     goToLink('/Home');
   } catch(error) {
