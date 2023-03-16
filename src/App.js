@@ -71,7 +71,7 @@ function App() {
     const maxEventDuration = 2;
     const minEventDuration = 0.5;
 
-    if (canAdd && !isNotAllowed && eventDuration <= maxEventDuration && eventDuration >= minEventDuration && title != '') {
+    if (canAdd && !isNotAllowed && eventDuration <= maxEventDuration && eventDuration >= minEventDuration && title !== '') {
       Swal.fire({
         icon: 'success',
         title: 'Court reserved!',
@@ -111,7 +111,7 @@ function App() {
       setModal(false);
       return(false);
 
-    } else if(title == ''){
+    } else if(title === ''){
       Swal.fire({
         icon: 'error',
         title: 'Please choose a game.',

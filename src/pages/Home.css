@@ -82,6 +82,7 @@
     border-radius: 15px;
     border: none;
     box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    
   }
   
   .Home button[type="search"] {
@@ -97,5 +98,27 @@
     cursor: pointer;
   }
 
+  .Home li{
+    list-style-type: none
+  }
 
-  
+  .Home li:hover{
+    display: inline-block;
+    position: relative;
+  }
+
+  .format-pre pre {
+    text-align: center;
+  }
+
+  /* .circular--landscape { display: inline-block; 
+    position: relative; 
+    width: 200px; 
+    height: 200px; overflow: hidden; 
+    border-radius: 50%; }
+
+    .circular--landscape img { width: auto; 
+        height: 100%; 
+        margin-left: -50px; } */
+
+/* fix the above css michael */

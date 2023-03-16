@@ -1,6 +1,6 @@
 import './Profile.css';
 import NavBar from "../components/NavBar";
-import { auth, db } from '../firebase';
+import { auth, db, storage } from '../firebase';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged} from 'firebase/auth';
 import { useState, useEffect } from 'react';
@@ -8,11 +8,14 @@ import Swal from 'sweetalert2';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
+import { ref, getDownloadURL  } from "firebase/storage";
+
 
 const Profile = () => {
 
-const localizer = momentLocalizer(moment);
+const [isImageLoaded, setIsImageLoaded] = useState(false);
 
+const localizer = momentLocalizer(moment);
 const [view, setView] = useState('week');
 const [events, setEvents] = useState([]);  
 
@@ -42,7 +45,7 @@ const eventStyleGetter = (event) => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             const fetchUserData = async () => {
-              const user = auth.currentUser;
+            const user = auth.currentUser;
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
@@ -50,10 +53,25 @@ const eventStyleGetter = (event) => {
             } else {
                 console.log("No such document!");
             }
+            const pathReference = ref(storage, "images/" + user.uid + ".png");
+            getDownloadURL(pathReference).then((url) => {
+                const img = document.getElementById('myimg');
+                img.setAttribute('src', url);
+                if (!isImageLoaded) {
+                    return (
+                    <div>
+                        <h1>Loading...</h1>
+                    </div>);
+                }
+                setIsImageLoaded(true);
+            }).catch((error) => {
+                console.log(error);
+            });
         };
     fetchUserData();
         })
-    }, []);
+    });
+
 
     return (
         <div>
@@ -62,11 +80,11 @@ const eventStyleGetter = (event) => {
                 <div className="profile-container">
                     <h2 className="profile-header">Your Profile</h2>
                     <div className="profile-content">
-                        <img src = {userData?.profile_photo}className='profile-image' alt="profile_photo"></img>
+                        <div className='circular--landscape'><img id='myimg' alt='could not display...'></img></div>
                         <h3 className="profile-name">Username: {userData?.username}</h3>
                         <h4 className="profile-email">Email: {userData?.email}</h4>
                         <p className="profile-bio">Bio: {userData?.bio}</p>
-                        <button onClick={editProfile}className="">Edit Bio</button>
+                        <button type="submit" onClick={() => {editProfile()}}>Edit Bio</button>
                     </div>
                 </div>
             </div>

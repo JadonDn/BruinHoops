@@ -5,10 +5,11 @@ import './CreateAccount.css';
 import Swal from 'sweetalert2';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { goToLink } from './components/Utils';
-import {auth, db} from './firebase';
+import {auth, db, storage} from './firebase';
 import { setDoc, doc } from "firebase/firestore"
 import { useState } from 'react';
-// import { redirect } from "react-router-dom";
+import { ref, uploadBytes } from "firebase/storage";
+
 
 
 const CreateAccount = () => {
@@ -27,9 +28,10 @@ const CreateAccount = () => {
                 last_login : Date.now(),
                 username : username,
                 password : password,
-                profile_photo : pfp,
                 bio : "insert bio"
             })
+            const fileRef = ref(storage, "images/" + user.uid + ".png");
+            await uploadBytes(fileRef, pfp);
             goToLink('/Home');
         }
         catch(error) {
@@ -48,6 +50,7 @@ const CreateAccount = () => {
         }
     }
 
+
     return(
            <div className='test'>
            <div  className='Create'>
@@ -55,13 +58,13 @@ const CreateAccount = () => {
            <div>
            <div>Create Account</div>
            <label htmlFor="username">Username:</label>
-           <input type="text" id="username" value={username} name="username" onChange={(event) => setUsername(event.target.value)} required placeholder='Create a Username'></input>
+           <input type="text" id="username" value={username} name="username" onChange={(event) => setUsername(event.target.value)} placeholder='Create a Username' required></input>
            <label htmlFor="email">Email:</label>
-           <input type="text" id="email" value={email} name="email" onChange={(event) => setEmail(event.target.value)} required placeholder='Create an Email'></input>
+           <input type="text" id="email" value={email} name="email" onChange={(event) => setEmail(event.target.value)} placeholder='Create an Email' required></input>
            <label htmlFor="password">Password:</label>
-           <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)} required placeholder='Create a Password'></input>
+           <input type="password" id="password" value={password} name="password" onChange={(event) => setPassword(event.target.value)} placeholder='Create a Password' required></input>
            <label htmlFor="Photo">Upload Your Photo:</label>
-           <input type="file" id="pfp" name="pfp" accept="image/png, image/jpeg" onChange={(event) => setPfp(event.target.value)} required></input>
+           <input type="file" id="pfp" name="pfp" accept="image/png" onChange={(event) => setPfp(event.target.files[0])} required></input>
            <button type ="submit" onClick={() => {register()} }>Register</button>
            </div>
            </div>
