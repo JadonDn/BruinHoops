@@ -108,7 +108,7 @@ function App() {
       setModal(false);
       return(false);
 
-    } else if(title === ''){
+    } else if(title == ''){
       Swal.fire({
         icon: 'error',
         title: 'Please choose a game.',
@@ -300,18 +300,24 @@ function App() {
 
 
     useEffect(() => {
+          const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+            const fetchData = async () => {
+              const querySnapshot = await getDocs(collection(db, "all-reservations"));
+              const events = querySnapshot.docs.map((doc) => {
+                const eventData = doc.data();
+                return {
+                  ...eventData,
+                  start: new Date(eventData.start.toDate()),
+                  end: new Date(eventData.end.toDate()),
+                  title: eventData.title
+                };
+              });
+              localStorage.setItem("events", JSON.stringify(events));
+              setEvents(events);
+            };
 
-      const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-      const savedEvents = storedEvents.map(event => ({
-        ...event,
-        start: new Date(event.start),
-        end: new Date(event.end),
-        title: event.title
-      }));
-  
-    
-      setEvents(savedEvents);
-    }, []);   // render events from local storage on the calendar
+          fetchData();
+        }, []);// render events from Firestore database on the calendar
 
 
 
@@ -369,11 +375,11 @@ const deleteEvents = (() => {
         }); 
 
         const globalEventRef = collection(db, "all-reservations");
-        const globalEventq = globalEventRef.where('user', '==', user.uid);
-        const globalQuerySnapshot = await globalEventq.get();
+        const globalEventq = query(globalEventRef, where('user', '==', user.uid));
+        const globalQuerySnapshot = await getDocs(globalEventq);
         if (!globalQuerySnapshot.empty) {
           globalQuerySnapshot.forEach(doc => {
-             doc.delete();
+            deleteDoc(doc.ref);
           });
         }       /// attempt to delete from 'all-reservations' if find an event created by the current user
 
@@ -411,10 +417,10 @@ const deleteEvents = (() => {
         start: new Date(newEvent.start),
         end: new Date(newEvent.end)
       };
-      const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
+      /*const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
       storedEvents.push(eventObject);
       localStorage.setItem('events', JSON.stringify(storedEvents));
-      setEvents(storedEvents);    // add event to local storage
+      setEvents(storedEvents);    */// add event to local storage
 
       // Add the new event to the user's events in Firebase
       try {
@@ -452,7 +458,7 @@ const deleteEvents = (() => {
         console.log(error);
       }
     }
-    else if( title == '') // if no title
+    else if( title === '') // if no title
     {
       Swal.fire({
         icon: 'error',
@@ -502,8 +508,15 @@ const deleteEvents = (() => {
         querySnapshot.forEach((doc) => {
           deleteDoc(doc.ref);
         }); 
-
-
+          
+          const globalEventRef = collection(db, "all-reservations");
+          const globalEventq = query(globalEventRef, where('user', '==', user.uid));
+          const globalQuerySnapshot = await getDocs(globalEventq);
+          if (!globalQuerySnapshot.empty) {
+            globalQuerySnapshot.forEach(doc => {    /// attempt to delete from 'all-reservations' if find an event created by the current user
+              deleteDoc(doc.ref);
+            });
+          }
       }
     })
   };
