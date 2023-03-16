@@ -3,8 +3,6 @@ import NavBar from "../components/NavBar";
 import { auth, db } from '../firebase';
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { onAuthStateChanged} from 'firebase/auth';
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { onAuthStateChanged} from 'firebase/auth';
 import { useState, useEffect } from 'react';
 import Swal from 'sweetalert2';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
