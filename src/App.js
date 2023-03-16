@@ -299,19 +299,23 @@ function App() {
     }, );   // activity meters are based on averages from google popular times for these locations
 
 
-  useEffect(() => {
+    useEffect(() => {
 
-    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    const savedEvents = storedEvents.map(event => ({
-      ...event,
-      start: new Date(event.start),
-      end: new Date(event.end),
-      title: event.title
-    }));
-
+      const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+      const savedEvents = storedEvents.map(event => ({
+        ...event,
+        start: new Date(event.start),
+        end: new Date(event.end),
+        title: event.title
+      }));
   
-    setEvents(savedEvents);
-  }, []);   // render events from local storage on the calendar
+    
+      setEvents(savedEvents);
+    }, []);   // render events from local storage on the calendar
+
+
+
+
 
 
 const deleteEvents = (() => { 
@@ -353,7 +357,6 @@ const deleteEvents = (() => {
         localStorage.removeItem("events");
         setEvents([]);
   
-        const uid = user.uid;
         const eventRef = collection(db, "users", user.uid, "events");
         const eventQuery = query(eventRef);
   
@@ -361,6 +364,15 @@ const deleteEvents = (() => {
         querySnapshot.forEach((doc) => {
           deleteDoc(doc.ref);
         }); 
+
+        const globalEventRef = collection(db, "all-reservations");
+        const globalEventq = globalEventRef.where('user', '==', user.uid);
+        const globalQuerySnapshot = await globalEventq.get();
+        if (!globalQuerySnapshot.empty) {
+          globalQuerySnapshot.forEach(doc => {
+             doc.delete();
+          });
+        }       /// attempt to delete from 'all-reservations' if find an event created by the current user
 
       }
     }
