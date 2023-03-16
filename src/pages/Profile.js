@@ -42,7 +42,7 @@ const eventStyleGetter = (event) => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             const fetchUserData = async () => {
-              const user = auth.currentUser;
+            const user = auth.currentUser;
             const docRef = doc(db, "users", user.uid);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {

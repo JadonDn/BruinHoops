@@ -299,19 +299,30 @@ function App() {
     }, );   // activity meters are based on averages from google popular times for these locations
 
 
-  useEffect(() => {
+    const [eventsFromFire, setEventsFromFire] = useState([]);
 
-    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
-    const savedEvents = storedEvents.map(event => ({
-      ...event,
-      start: new Date(event.start),
-      end: new Date(event.end),
-      title: event.title
-    }));
 
-  
-    setEvents(savedEvents);
+  useEffect(   () => {
+
+      const fetchUserData = async () => {
+        const docRef = doc(db, "all-reservations", "90b23a2f-5196-4a38-8110-62df6c63e2a7");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          data.start = new Date(data.start);
+          data.end = new Date(data.end);
+          setEventsFromFire(data);
+        } else {
+            console.log("No such document!");
+        }
+    };
+
+    fetchUserData();
+    console.log(eventsFromFire);
   }, []);   // render events from local storage on the calendar
+
+
+
 
 
 const deleteEvents = (() => { 
