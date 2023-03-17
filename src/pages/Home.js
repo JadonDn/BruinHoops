@@ -47,7 +47,7 @@ function Home() {
       Swal.fire({
         icon: "info",
         title: "Username: " + user.username,
-        html: "<pre><div className='circular--landscape'><img id='myimg' alt='No Profile Photo'></img></div><br>Email: " + user.email + "<br>Bio: " + user.bio + "<br></pre>",
+        html: "<pre><div className='circular--landscape'><img height= 300 width=300 id='myimg' alt='No Profile Photo'></img></div><br>Email: " + user.email + "<br>Bio: " + user.bio + "<br></pre>",
         customClass: {
           popup: 'format-pre'
         },

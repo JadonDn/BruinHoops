@@ -85,15 +85,16 @@
     
   }
   
-  .Home button[type="search"] {
+  .Home button[type="button"] {
     padding: 10px 20px;
     margin-left: 10px;
     border-radius: 5px;
     border: none;
     background-color: #007bff;
     color: white;
+ 
   }
-  .Home button[type="search"]:hover {
+  .Home button[type="button"]:hover {
     background-color: lightblue;
     cursor: pointer;
   }
