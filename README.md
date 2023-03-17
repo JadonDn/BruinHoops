@@ -24,9 +24,9 @@ The app should be accessible at
 
 ## Technologies Used
 BruinHoops is built using the following technologies:
-##• Reactjs
-##• JavaScript
-##• Node.js
-##• Firebase
+• Reactjs
+• JavaScript
+• Node.js
+• Firebase
 
 
