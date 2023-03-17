@@ -299,7 +299,7 @@ function App() {
     }, );   // activity meters are based on averages from google popular times for these locations
 
 
-    useEffect(() => {
+    useEffect( () => {
           const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
             const fetchData = async () => {
               const querySnapshot = await getDocs(collection(db, "all-reservations"));
@@ -387,6 +387,9 @@ function App() {
         // Update the local events state with the new event
         setEvents([...events, { ...newEvent, id: docRef.id }]);  // keep that id for local events
         toggleModal();
+        setTimeout(()=>{
+          window.location.reload(false);
+      }, 500);
       } catch (error) {
         console.log(error);
       }
