@@ -18,16 +18,17 @@ const NavBar = () => {
                 <a>About</a>
               </Link>
            </li>
-           <li>
-              <Link to="/App">
-                <a>Events</a>
-              </Link>
-           </li>
            <li>  
               <Link to="/Contact">
               <a>Contact Us</a>
               </Link>
               </li>
+           <li>
+              <Link to="/App">
+                <a>Events</a>
+              </Link>
+           </li>
+           
             <li>
               <Link to="/Profile">
                 <a>Profile</a>

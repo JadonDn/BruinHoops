@@ -41,7 +41,8 @@ function Home() {
             }
             setIsImageLoaded(true);
         }).catch((error) => {
-            console.log(error);
+            const img = document.getElementById('myimg');
+            img.setAttribute('src', 'https://png.pngtree.com/png-clipart/20210608/ourmid/pngtree-light-gray-silhouette-avatar-png-image_3418403.jpg')
         });
 
       Swal.fire({
