@@ -248,10 +248,10 @@ function App() {
       html: `
       <div style="text-align: left;   line-height: 1.5;      ">
         • You can reserve courts clicking on the calendar.<br/>
-        • You may cancel your reservation by clicking the event on the calendar or by using the 'Cancel Events' button<br/>
+        • You may cancel your reservation by clicking the event on the calendar.<br/>
         • You may have only one active court reservation at a time.<br/>
         • Courts must be reserved at least 30 minutes and at most 2 hours.<br/>
-        • If you do not confirm your reservation within the first 15 minutes, it will be cancelled.<br/>
+        • You may view the history of reserved events on the calendar.<br/>
         • Be responsible! Basketball courts rules and courtesies apply at all times.<br/>
         • There may only be up to 4 reservations per time slot.<br/>
         • And most importantly, have fun!</div>`, 
@@ -319,75 +319,6 @@ function App() {
           fetchData();
         }, []);// render events from Firestore database on the calendar
 
-
-
-
-
-
-
-
-
-const deleteEvents = (() => { 
-  Swal.fire({
-    title: 'Delete Reservation?',
-    html: '<div style="text-align: center;">You cannot revert this!</div>',
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#007bff',
-    cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, delete it!'
-  }).then(async (result) => {
-    if (result.isConfirmed) {
-      if(events.length === 0)
-      {
-        Swal.fire({
-
-          title: 'Error!',
-          html: '<div style="text-align: center;">You do not have any curent reservations.',
-          icon: 'error',
-          confirmButtonColor: '#007bff',
-          timerProgressBar: true,
-          timer: 4000
-  
-        })
-      }
-      else{
-        Swal.fire({
-
-          title: 'Success!',
-          html: '<div style="text-align: center;">Your event has been deleted.',
-          icon: 'success',
-          confirmButtonColor: '#007bff',
-          timerProgressBar: true,
-          timer: 4000
-  
-        })
-  
-        localStorage.removeItem("events");
-        setEvents([]);
-  
-        const eventRef = collection(db, "users", user.uid, "events");
-        const eventQuery = query(eventRef);
-  
-        const querySnapshot = await getDocs(eventQuery);
-        querySnapshot.forEach((doc) => {
-          deleteDoc(doc.ref);
-        }); 
-
-        const globalEventRef = collection(db, "all-reservations");
-        const globalEventq = query(globalEventRef, where('user', '==', user.uid));
-        const globalQuerySnapshot = await getDocs(globalEventq);
-        if (!globalQuerySnapshot.empty) {
-          globalQuerySnapshot.forEach(doc => {
-            deleteDoc(doc.ref);
-          });
-        }       /// attempt to delete from 'all-reservations' if find an event created by the current user
-
-      }
-    }
-  })
-})    // delete all events in user's events collection on friebase and from local storage so they do not render anymore
-
   const user = getAuth().currentUser; // firebase thing for getting current user
 
   const handleSubmit = async (e) => {
@@ -411,11 +342,13 @@ const deleteEvents = (() => {
         title: title,
         start: startDate,
         end: endDate,
+        user: user.uid
       };
       const eventObject = {
         title: newEvent.title,
         start: new Date(newEvent.start),
-        end: new Date(newEvent.end)
+        end: new Date(newEvent.end),
+        user: user.uid
       };
       /*const storedEvents = JSON.parse(localStorage.getItem('events')) || [];
       storedEvents.push(eventObject);
@@ -472,52 +405,81 @@ const deleteEvents = (() => {
   };
 
 
-  const handleDeleteEvent = (clickedEvent) => {   //delete clicked event
-    console.log(clickedEvent);
+  const handleDeleteEvent = async (clickedEvent) => {   //delete clicked event
 
-    Swal.fire({
-      title: 'Delete Reservation?',
-      html: '<div style="text-align: center;">You cannot revert this!</div>',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#007bff',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-
-          title: 'Success!',
-          html: '<div style="text-align: center;">Your event has been deleted.',
-          icon: 'success',
-          confirmButtonColor: '#007bff',
-          timerProgressBar: true,
-          timer: 4000
-
-        })
-        const newEvents = events.filter((event) => event.id !== clickedEvent.id);
-        localStorage.removeItem("events");
-        setEvents(newEvents);
-
-        const eventTitle = clickedEvent.title;
-        const eventRef = collection(db, "users", user.uid, "events");
-        const eventQuery = query(eventRef, where("title", "==", eventTitle));   // delete event from user's events on firebase
-
-        const querySnapshot = await getDocs(eventQuery);
-        querySnapshot.forEach((doc) => {
-          deleteDoc(doc.ref);
-        }); 
-          
-          const globalEventRef = collection(db, "all-reservations");
-          const globalEventq = query(globalEventRef, where('user', '==', user.uid));
-          const globalQuerySnapshot = await getDocs(globalEventq);
-          if (!globalQuerySnapshot.empty) {
-            globalQuerySnapshot.forEach(doc => {    /// attempt to delete from 'all-reservations' if find an event created by the current user
-              deleteDoc(doc.ref);
-            });
+      const allEventsRef = collection(db, "all-reservations");
+      const globalEventq = query(allEventsRef, where('user', '==', user.uid));
+      const globalEventRef = await getDocs(globalEventq);
+      let isFound = false;
+      if (!globalEventRef.empty) {
+        isFound = false;
+        globalEventRef.forEach(doc => {
+          if (doc.data().user === clickedEvent.user) {
+            isFound = true;
           }
-      }
-    })
+        })}
+
+
+    if(isFound) //do something
+    {
+      Swal.fire({
+        title: 'Delete Reservation?',
+        html: '<div style="text-align: center;">You cannot revert this!</div>',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#007bff',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          Swal.fire({
+  
+            title: 'Success!',
+            html: '<div style="text-align: center;">Your event has been deleted.',
+            icon: 'success',
+            confirmButtonColor: '#007bff',
+            timerProgressBar: true,
+            timer: 4000
+  
+          })
+          const newEvents = events.filter((event) => event.id !== clickedEvent.id);
+          localStorage.removeItem("events");
+          setEvents(newEvents);
+  
+          const eventTitle = clickedEvent.title;
+          const eventRef = collection(db, "users", user.uid, "events");
+          const eventQuery = query(eventRef, where("title", "==", eventTitle));   // delete event from user's events on firebase
+  
+          const querySnapshot = await getDocs(eventQuery);
+          querySnapshot.forEach((doc) => {
+            deleteDoc(doc.ref);
+          }); 
+            
+            const globalEventRef = collection(db, "all-reservations");
+            const globalEventq = query(globalEventRef, where('user', '==', user.uid));
+            const globalQuerySnapshot = await getDocs(globalEventq);
+            if (!globalQuerySnapshot.empty) {
+              globalQuerySnapshot.forEach(doc => {    /// attempt to delete from 'all-reservations' if find an event created by the current user
+                deleteDoc(doc.ref);
+              });
+            }
+        }
+      })
+    }
+    else
+    {
+      Swal.fire({
+  
+        title: 'Error!',
+        html: '<div style="text-align: center;">You cannot delete events you do not own!.',
+        icon: 'error',
+        confirmButtonColor: '#007bff',
+        timerProgressBar: true,
+        timer: 4000
+
+      })
+    }
+
   };
 
 
@@ -534,6 +496,7 @@ const deleteEvents = (() => {
       </div>
       <div className="event-btn-container" >
       <button onClick={termsPopup}className="btn-modal"> Terms </button>
+      <div class="both-meters" >
         <div class="meter">
           <span class="hitch-meter-label">Hitch Activity:</span>
           <canvas class="meter-canvas" id="hitch-meter" ></canvas>
@@ -542,7 +505,7 @@ const deleteEvents = (() => {
           <span class="wooden-meter-label">Wooden Activity:</span>
           <canvas class="meter-canvas" id="wooden-meter" ></canvas>
         </div>
-        <button onClick={deleteEvents}className="btn-modal"> Cancel Events </button>
+        </div>
 
       </div>
       <div style={{clear: 'both'}}></div>

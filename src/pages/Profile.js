@@ -13,6 +13,87 @@ import { ref, getDownloadURL  } from "firebase/storage";
 
 const Profile = () => {
 
+
+  useEffect(() => {
+
+    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    const userID = auth.currentUser;
+
+    const eventWithUser = storedEvents.find(event => event.user === userID.uid);
+    let savedEvents = eventWithUser ? [eventWithUser] : [];
+    if (eventWithUser) {
+      savedEvents = [Object.assign({}, eventWithUser, {
+        start: new Date(eventWithUser.start),
+        end: new Date(eventWithUser.end),
+      })];
+    } else {
+      savedEvents = [];
+    }
+
+    setEvents(savedEvents);
+  }, []);   // render events from local storage on the calendar
+
+
+
+  const handleClick = async (event) => {
+
+    const storedEvents = JSON.parse(localStorage.getItem("events")) || [];
+    const userID = auth.currentUser;
+    const eventWithUser = storedEvents.find(event => event.user === userID.uid);
+    let savedEvents = eventWithUser ? [eventWithUser] : [];
+    if (eventWithUser) {
+      savedEvents = [Object.assign({}, eventWithUser, {
+        start: new Date(eventWithUser.start),
+        end: new Date(eventWithUser.end),
+      })];
+    } else {
+      savedEvents = [];
+    }
+    const userEvents = savedEvents.map(event => {
+      const startDate = new Date(event.start);
+      const endDate = new Date(event.end);
+      const start = startDate.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "numeric"
+      });
+      const end = endDate.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "numeric"
+      });
+      return {
+        title: event.title,
+        start: startDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        }),
+        end: endDate.toLocaleDateString("en-US", {
+          month: "long",
+          day: "numeric",
+          year: "numeric"
+        }),
+        startTime: start,
+        endTime: end
+      };
+    });
+    
+    const formattedEvents = userEvents.map(event => {
+      const { title, start, end, startTime, endTime } = event;
+      return `Reservation Details: \n\nGame: ${title}\n\nStart: ${start} ${startTime}\n\nEnd: ${end} ${endTime}`;
+    }).join('\n\n');
+
+    Swal.fire({
+      title: formattedEvents,
+      confirmButtonColor: '#007bff',
+      imageUrl: 'mascot.png',
+      imageWidth: 150,
+      imageHeight: 150,
+
+    });
+
+  }
+
+
 const [isImageLoaded, setIsImageLoaded] = useState(false);
 
 const localizer = momentLocalizer(moment);
@@ -101,6 +182,7 @@ const eventStyleGetter = (event) => {
           dayFormat={dayFormat}
           timeFormat={timeFormat}
           headerFormat={headerFormat}
+          onSelectEvent={handleClick}
           style={{ height: 475, width: 725, paddingLeft: '50px', paddingRight: '50px', }}
           intervalHeight={50}
           slotDuration={'00:30:00'}

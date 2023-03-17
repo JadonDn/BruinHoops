@@ -74,6 +74,25 @@
     border-radius: 10px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
   }
+
+
+  .cal .rbc-event:hover::before {
+    content: "i";
+    color: black;
+    font-family: 'Josefin Sans', sans-serif;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: help;
+  }
   
   .circular--landscape { display: inline-block; 
     position: relative; 

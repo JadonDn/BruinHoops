@@ -220,7 +220,7 @@ canvas {
 
 .meter-canvas {
   margin-right: 20px; /* add more margin to the right */
-  margin-top: 49px;
+  margin-top: 30px;
   width: 120px;
   border: 1px solid #ccc;
 }
@@ -229,7 +229,7 @@ canvas {
   font-size: 15px;
   font-weight: bold;  
   font-family: 'Josefin Sans', sans-serif;
-  margin-top: 25px;
+  margin-top: 5px;
   width: 120px;
 }
 
@@ -237,7 +237,7 @@ canvas {
   font-size: 15px;
   font-weight: bold;
   font-family: 'Josefin Sans', sans-serif;
-  margin-top: 25px;
+  margin-top: 5px;
   width: 98px;
 }
 
